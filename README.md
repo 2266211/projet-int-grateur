@@ -11,4 +11,17 @@
 *Présenté le 21 février 2024*
 
 ## Tables des matières
-- 
+- La description du projet
+  - L'idée
+  - L'utilité
+  - L'innovation
+  - Public cible
+  - Cas d'utilisation
+  - Liens scientifiques
+- Les technologies
+    - Technologies utilisées
+    - Défis et difficultés
+- Plan de travail
+    - Diagramme de Gantt
+    - Diagramme de classes
+    - Diagramme de déploiement
