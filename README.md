@@ -25,3 +25,10 @@
     - Diagramme de Gantt
     - Diagramme de classes
     - Diagramme de déploiement
+
+## La description du projet
+### L'idée
+
+Dans le cadre de notre projet d'intégration nous avons décidé de réaliser une application web de questionnaire scientifique. 
+En résumé, il sera possible de réaliser des tests qui vont réfléchir le niveau de l'utilisateur dans plusieurs matières scientifiques.
+Cette section ne sert que d'introduction au projet. Dans cette optique, de plus ample information se trouve dans les autres parties du livrable.
