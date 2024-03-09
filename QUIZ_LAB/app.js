@@ -8,8 +8,8 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 //Routes
-app.use(express.static('public'));
-app.use('/', require('./routes/index'))
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
 const PORT = process.env.PORT || 5000;
 

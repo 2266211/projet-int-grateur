@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-app.use(express.static('public'));
 
 // Login Page
-router.get('/login', (req, res) => res.end('Login'));
+router.get('/connexion', (req, res) => {
+    res.render('connexion');
+});
 
 // Register Page
-router.get('/register', (req, res) => res.end('Login'));
+router.get('/inscription', (req, res) => {
+    res.render('inscription');
+});
 
 module.exports = router;
