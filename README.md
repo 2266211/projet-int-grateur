@@ -88,4 +88,4 @@ Il y aura également une classe questionnaire, qui aura comme attributs un nom S
 Les dites Questions comporteront un nom String et une réponse double comme attributs, avec une méthode permettant de modifier la réponse finale à la question.
 Finalement, la classe SiteWeb aura un Utilisateur comme attribut, avec des méthodes de connexion, d'inscription et de déconnexion.
 
-
+Notes : Pour que le fichier QUIZ_LAB fonctionne, il faut télécharger npm_modules, ce fichier est automatiquement ajouter au projet lorsqu'on ajoute le gestionnaire npm.
