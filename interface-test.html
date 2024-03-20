@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test de quiz</title>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/lux/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+      .btn btn-success{
+
+        text-align: right;
+
+
+
+
+      }
+
+
+
+
+
+
+    </style>
+  </head>
+
+  <body>
+
+
+    
+
+
+    <div class="container-fluid bg-dark text-light py-5">
+      <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Quiz!</h1>
+        <p class="lead">Test your knowledge with our quiz. Choose the correct answer for each question.</p>
+        <hr class="my-4">
+        <div class="container">
+          <!-- Quiz Questions and Options -->
+          <div id="quiz">
+            <div class="question">
+              <h3>Question 1: What is the capital of France?</h3>
+              <div class="options">
+                <label>
+                  <input type="radio" name="q1" value="Paris"> Paris
+                </label>
+                <label>
+                  <input type="radio" name="q1" value="London"> London
+                </label>
+                <label>
+                  <input type="radio" name="q1" value="Berlin"> Berlin
+                </label>
+                <label>
+                  <input type="radio" name="q1" value="Rome"> Rome
+                </label>
+              </div>
+            </div>
+            <!-- Add more questions here -->
+          </div>
+          <!-- End Quiz Questions -->
+        </div>
+        <button type="button" class="btn btn-success">Terminé</button>
+      </div>
+    </div>
+  </body>
+</html>
