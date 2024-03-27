@@ -21,6 +21,6 @@ const schemaConnexion = new mongoose.Schema({
     }
 });
 
-const collection = new mongoose.model("test", schemaConnexion);
+const collection = new mongoose.model("user", schemaConnexion);
 
 module.exports = collection;
