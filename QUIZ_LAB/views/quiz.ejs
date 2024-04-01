@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Page d'acceuil</title>
     <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -13,34 +13,18 @@
             background-size: cover;
             background-position: top;
         }
-        .container-form {
-            max-width: 50%; 
-            margin: 0 auto; 
-            padding: 20px; 
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-        }
         .d-flex .btn-primary, .d-flex .btn-secondary{
             margin-right: 5px;
             margin-left: 5px;
         }
-        div:last-child input {
-            margin-bottom: 20px;
-        }
-        /* Add hover transition */
-        .btn-primary:hover, .btn-secondary:hover {
-            transition: 1s ease;
-        }
-        .btn-secondary:hover{
-          background-color: #000; /* New background color */
-          color: #fff; /* New text color */
-        }
-        .btn-primary:hover {
-            background-color: #fff; /* New background color */
-            color: #000; /* New text color */
+        .btn.btn-lg.btn-primary{
+            width: 50%;
+            margin: auto;
+            display: block;
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
@@ -69,22 +53,23 @@
           </div>
         </div>
     </nav>
-    <div class ="container-form">
-      <form action="/connexion" method="post" >
-          <fieldset>
-            <legend>Connexion</legend>
-            <div>
-              <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrée un pseudo" name = "nom">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    
+    <% if (questions.length > 0) { %>
+        <% questions.forEach((question, index) => { %>
+            <div class="d-grid gap-2">
+                <h2>Question <%= index + 1 %></h2>
+                <p><%= question.question %></p>
+                <% if (question.options && Array.isArray(question.options)) { %>
+                        <% question.options.forEach(option => { %>
+                            <button class="btn btn-lg btn-primary" type="button"><%= option %></button>
+                        <% }); %>
+                <% } else { %>
+                    <p>No options found for this question.</p>
+                <% } %>
             </div>
-            <div>
-              <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-              <input type="password" name = "motdepasse" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </fieldset>
-        </form>
-  </div>
+        <% }); %>
+    <% } else { %>
+        <p>No questions found.</p>
+    <% } %>
 </body>
 </html>
