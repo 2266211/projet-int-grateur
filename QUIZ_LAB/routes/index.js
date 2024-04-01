@@ -71,5 +71,36 @@ router.post("/connexion", async (req, res) => {
     }
 })
 
+//Quiz
+
+const Question = require('../models/question'); 
+
+router.get('/quiz', (req, res) => {
+    Question.find({})
+        .then(questions => {
+            res.render('quiz', {questions});
+        })
+        .catch(err => {
+            console.error('La recherche des questions n\'a pas été réussie :', err);
+            res.render('erreur', { error: 'Une erreur est survenue au niveau de la recherche de données' });
+        });
+});
+
+/*router.get('/quiz', (req, res) => {
+    Question.find({})
+        .then(questions => {
+            if (!questions || questions.length === 0) {
+                // Handle case when no questions are found
+                res.render('error', { error: 'No questions found' });
+            } else {
+                // Render the quiz view with the fetched questions
+                res.render('quiz', { questions });
+            }
+        })
+        .catch(err => {
+            console.error('Error fetching questions:', err);
+            res.render('error', { error: 'An error occurred while fetching questions' });
+        });
+});*/
 
 module.exports = router;
