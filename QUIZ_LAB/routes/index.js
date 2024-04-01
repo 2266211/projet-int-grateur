@@ -86,21 +86,4 @@ router.get('/quiz', (req, res) => {
         });
 });
 
-/*router.get('/quiz', (req, res) => {
-    Question.find({})
-        .then(questions => {
-            if (!questions || questions.length === 0) {
-                // Handle case when no questions are found
-                res.render('error', { error: 'No questions found' });
-            } else {
-                // Render the quiz view with the fetched questions
-                res.render('quiz', { questions });
-            }
-        })
-        .catch(err => {
-            console.error('Error fetching questions:', err);
-            res.render('error', { error: 'An error occurred while fetching questions' });
-        });
-});*/
-
 module.exports = router;
