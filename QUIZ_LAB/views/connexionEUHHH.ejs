@@ -48,7 +48,19 @@
         #password.form-control{
             margin-bottom: 20px;
         }
+        .bi {
+            color: #ffc107;
+            font-size: 30px;
+        }
 
+        .col-sm-1{
+            margin-right: 130px;
+        }
+
+        #retour.btn-default{
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
     </style>
 </head>
 
@@ -56,8 +68,15 @@
 <body>
     <!--Put HTML elements inside a .jumbotron-->
     <section class="jumbotron text-center"> <!--Add the .text-center class to center the text inside-->
-        <h1>QuizLab</h1>
-        <p>Séries de tests pour les cégepiens</p>
+        <div class="row">
+            <div class="col-sm-1">
+                <button id="retour"class="btn btn-default" type="button"><i class="bi bi-arrow-return-left"></i></button>
+            </div>
+            <div class="col-sm-8">
+                <h1>QuizLab</h1>
+                <p>Séries de tests pour les cégepiens</p>
+            </div>
+        </div>
     </section>
     <section id="bigBox" class="container-fluid bg-grey">
         <h2 class="text-center">CONNEXION</h2>
