@@ -90,7 +90,13 @@ Finalement, la classe SiteWeb aura un Utilisateur comme attribut, avec des méth
 
 ### Exemples d'interface
 
-![Interface Admin - Statistiques](https://github.com/2266211/projet-int-grateur/assets/157629146/8ec31c5f-1147-45cb-a3b5-3fa81b6c156b)
+## Interface Questionnaire
+
 ![Interface Questionnaire](https://github.com/2266211/projet-int-grateur/assets/157629146/b0ea1558-63cb-4b01-b5b4-6305478a2f0e)
+
+## Interface Admin - Statistiques
+
+![Interface Admin - Statistiques](https://github.com/2266211/projet-int-grateur/assets/157629146/316fc25a-0f7b-4b13-8a59-7f5b6839cbf0)
+
 
 Notes : Pour que le fichier QUIZ_LAB fonctionne, il faut télécharger npm_modules, ce fichier est automatiquement ajouter au projet lorsqu'on ajoute le gestionnaire npm.
