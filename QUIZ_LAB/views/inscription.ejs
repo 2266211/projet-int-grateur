@@ -17,6 +17,18 @@
             margin-right: 5px;
             margin-left: 5px;
         }
+        .navbar-brand{
+          margin-left: 2%;
+        }
+        .container-form{
+          background-color: rgba(91, 100, 128, 0.6);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          margin: 0 auto;
+          width: 50%;
+          margin-top: 2%;
+        }
     </style>
 </head>
 
@@ -53,15 +65,22 @@
           <fieldset>
             <legend>Inscription</legend>
             <div>
-              <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrée un pseudo" name = "nom">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="inputPrenom" class="form-label mt-4">Prénom</label>
+              <input class="form-control" id="inputPrenom" aria-describedby="Prenom" placeholder="Entrée un prénom" name = "prenom">
             </div>
             <div>
-              <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-              <input type="password" name = "motdepasse" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
+              <label for="inputNom" class="form-label mt-4">Nom</label>
+              <input class="form-control" id="inputNom" aria-describedby="Nom" placeholder="Entrée un nom" name = "nom">
+              <small id="infoPerso" class="form-text text-muted">Les informations personnelles ne seront jamais divulgées à des sources extérieures.</small>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div>
+              <label for="inputMotdepasse" class="form-label mt-4">Mot de passe</label>
+              <input type="password" name = "motdepasse" class="form-control" id="inputMotdepasse" placeholder="Entrée un mot de passe" autocomplete="off">
+              <% if (existingUser) { %>
+                <small id="messageErreur" class="form-text text-danger">Un compte avec ce prénom et ce nom existe déjà.</small>
+              <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
           </fieldset>
         </form>
   </div>

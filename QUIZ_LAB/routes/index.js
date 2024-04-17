@@ -1,47 +1,58 @@
 const express = require('express');
 const path = require('path');
-const collection = require('./config');
 const router = express.Router();
 const bcrypt = require("bcrypt");
+
+require('./config');
+
+//Schéma mongoose importé
+const Question = require('../models/question');
+const User = require('../models/user');
 
 //Conversion des données en format json
 router.use(express.json());
 
+//Encodation de l'url
 router.use(express.urlencoded({extended : false}));
 
+//Cheminement de la page d'accueil
 router.get('/', (req, res) => {
     res.render('index');
 });
+
+//Cheminement de la page de connexion
 router.get('/connexion', (req, res) => {
     res.render('connexion');
 });
+
+//Cheminement de la page d'inscription
 router.get('/inscription', (req, res) => {
-    res.render('inscription');
+    res.render('inscription', {existingUser : false});
 });
 
 
 //Création d'un compte
 router.post("/inscription", async (req, res) => {
     const data = {
+        prenom: req.body.prenom,
         nom : req.body.nom,
         motdepasse : req.body.motdepasse
     }
 
-    const existingUser = await collection.findOne({nom : data.nom});
+    const existingUser = await User.findOne({prenom : data.prenom}, {nom : data.nom});
     if(existingUser){
-        res.send("User already exists. Please choose wfsdafsda.")
+        res.send('inscription', {existingUser : true})
     }
     else{
-        //Encryption en utilisant bcrypt
+        //Encryption en utilisant l'extension bcrypt et l'algorithme Blowfish cipher
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.motdepasse, saltRounds);
 
         data.motdepasse = hashedPassword; 
 
-
-        const userdata = await collection.create(data);
+        const userdata = await User.create(data);
         console.log(userdata);
-        res.render('inscription');
+        res.render('inscription', {existingUser : false});
     }
 });
 
@@ -49,7 +60,7 @@ router.post("/inscription", async (req, res) => {
 router.post("/connexion", async (req, res) => {
     try{
         console.log("Request Body Password : ", req.body.motdepasse);
-        const check = await collection.findOne({nom: req.body.nom})
+        const check = await User.findOne({nom: req.body.nom})
         
 
         if(!check){
@@ -73,7 +84,7 @@ router.post("/connexion", async (req, res) => {
 
 //Quiz
 
-const Question = require('../models/question'); 
+
 
 router.get('/quiz', (req, res) => {
     Question.find({})

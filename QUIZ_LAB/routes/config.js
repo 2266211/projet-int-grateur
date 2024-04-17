@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb+srv://Cluster:1234@cluster.rsbyhvp.mongodb.net/test");
+const connect = mongoose.connect("mongodb+srv://Cluster:1234@cluster.rsbyhvp.mongodb.net/QUIZLAB");
 
 //Vérifier que la base de donnée est bien connectée
 connect.then(() => {
@@ -9,7 +9,8 @@ connect.then(() => {
     console.log("Erreur au niveau de la base de donnée");
 });
 
-//Création d'un schéma
+/*
+//Création d'un schéma et utilisation pour la connexion
 const schemaConnexion = new mongoose.Schema({
     nom : {
         type : String,
@@ -25,3 +26,4 @@ const schemaConnexion = new mongoose.Schema({
 const collection = new mongoose.model("user", schemaConnexion);
 
 module.exports = collection;
+*/
