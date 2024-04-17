@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const bcrypt = require("bcrypt");
+let currentUser =  null;
 
 require('./config');
 
@@ -17,17 +18,17 @@ router.use(express.urlencoded({extended : false}));
 
 //Cheminement de la page d'accueil
 router.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {currentUser : currentUser});
 });
 
 //Cheminement de la page de connexion
 router.get('/connexion', (req, res) => {
-    res.render('connexion');
+    res.render('connexion', {nombreErreur : 50});
 });
 
 //Cheminement de la page d'inscription
 router.get('/inscription', (req, res) => {
-    res.render('inscription', {existingUser : false});
+    res.render('inscription', {existingUser : false, nombreErreur : 50});
 });
 
 
@@ -36,12 +37,15 @@ router.post("/inscription", async (req, res) => {
     const data = {
         prenom: req.body.prenom,
         nom : req.body.nom,
+        adresseCourriel : "whatever",
         motdepasse : req.body.motdepasse
     }
 
-    const existingUser = await User.findOne({prenom : data.prenom}, {nom : data.nom});
+    const existingUser = await User.findOne({prenom : data.prenom}, {nom : data.nom}, {adresseCourriel : data.adresseCourriel});
     if(existingUser){
-        res.send('inscription', {existingUser : true})
+        res.render('inscription', {existingUser : true, nombreErreur : 1})
+    }else if(data.motdepasse.length < 6){
+        res.render('inscription', {existingUser : true, nombreErreur : 0})
     }
     else{
         //Encryption en utilisant l'extension bcrypt et l'algorithme Blowfish cipher
@@ -52,28 +56,28 @@ router.post("/inscription", async (req, res) => {
 
         const userdata = await User.create(data);
         console.log(userdata);
-        res.render('inscription', {existingUser : false});
+        res.render('inscription', {existingUser : false, nombreErreur : 50});
     }
 });
 
 //Connexion
 router.post("/connexion", async (req, res) => {
     try{
-        console.log("Request Body Password : ", req.body.motdepasse);
-        const check = await User.findOne({nom: req.body.nom})
+        const check = await User.findOne({nom: req.body.nom, prenom : req.body.prenom})
         
-
         if(!check){
-                res.send("user name cannot be found");
+                res.render('connexion', {nombreErreur : 1})
         }
-
         //Comparer les mot de passes encrypter avec celui écrit en texte
         if(check != null){
             const isMotDePasseMatch = await bcrypt.compare(req.body.motdepasse, check.motdepasse);
         if(isMotDePasseMatch){
-            res.render("index");
+            currentUser = await User.findOne({adresseCourriel : req.body.adresseCourriel});
+            module.exports = currentUser;
+            res.render('index', {currentUser : currentUser});
+            console.log(currentUser.prenom);
         }else{
-            req.send("mauvais mot de passe");
+            req.render('connexion', {nombreErreur : 0})
         }
         }
     }catch(error){
@@ -83,8 +87,6 @@ router.post("/connexion", async (req, res) => {
 })
 
 //Quiz
-
-
 
 router.get('/quiz', (req, res) => {
     Question.find({})
