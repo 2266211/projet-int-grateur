@@ -8,22 +8,3 @@ connect.then(() => {
 .catch(() => {
     console.log("Erreur au niveau de la base de donnée");
 });
-
-/*
-//Création d'un schéma et utilisation pour la connexion
-const schemaConnexion = new mongoose.Schema({
-    nom : {
-        type : String,
-        required : true
-    },
-    motdepasse : {
-        type:String,
-        required:true
-    }
-});
-
-
-const collection = new mongoose.model("user", schemaConnexion);
-
-module.exports = collection;
-*/

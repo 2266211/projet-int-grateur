@@ -1,0 +1,18 @@
+<!-- quiz.ejs -->
+<html>
+<head>
+  <title>Quiz</title>
+</head>
+<body>
+  <h1><%= quiz.Titre %></h1>
+  <form action="/submit-answer" method="post">
+    <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
+    <h2><%= quiz.questions[currentQuestionIndex].question %></h2>
+    <% for (let i = 0; i < quiz.questions[currentQuestionIndex].options.length; i++) { %>
+      <input type="radio" name="answer" value="<%= i %>">
+      <%= quiz.questions[currentQuestionIndex].options[i] %><br>
+    <% } %>
+    <button type="submit">Next</button>
+  </form>
+</body>
+</html>

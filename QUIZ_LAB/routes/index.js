@@ -2,13 +2,15 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const bcrypt = require("bcrypt");
-let currentUser =  null;
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'hopla';
 
 require('./config');
 
 //Schéma mongoose importé
 const Question = require('../models/question');
 const User = require('../models/user');
+const Quiz = require('../models/quiz');
 
 //Conversion des données en format json
 router.use(express.json());
@@ -18,7 +20,7 @@ router.use(express.urlencoded({extended : false}));
 
 //Cheminement de la page d'accueil
 router.get('/', (req, res) => {
-    res.render('index', {currentUser : currentUser});
+    res.render('index');
 });
 
 //Cheminement de la page de connexion
@@ -63,19 +65,19 @@ router.post("/inscription", async (req, res) => {
 //Connexion
 router.post("/connexion", async (req, res) => {
     try{
-        const check = await User.findOne({nom: req.body.nom, prenom : req.body.prenom})
+        const user = await User.findOne({nom: req.body.nom, prenom : req.body.prenom})
         
-        if(!check){
+        if(!user){
                 res.render('connexion', {nombreErreur : 1})
         }
         //Comparer les mot de passes encrypter avec celui écrit en texte
-        if(check != null){
-            const isMotDePasseMatch = await bcrypt.compare(req.body.motdepasse, check.motdepasse);
+        if(user != null){
+            const isMotDePasseMatch = await bcrypt.compare(req.body.motdepasse, user.motdepasse);
         if(isMotDePasseMatch){
-            currentUser = await User.findOne({adresseCourriel : req.body.adresseCourriel});
-            module.exports = currentUser;
-            res.render('index', {currentUser : currentUser});
-            console.log(currentUser.prenom);
+            const token = jwt.sign({userID : user._id}, JWT_SECRET);
+            res.cookie('token', token);
+            res.redirect('/')
+            console.log(token);
         }else{
             req.render('connexion', {nombreErreur : 0})
         }
@@ -86,17 +88,52 @@ router.post("/connexion", async (req, res) => {
     }
 })
 
-//Quiz
+//Vérification du Token
+function verifierToken(req, res, next) {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).redirect('/connexion');
 
-router.get('/quiz', (req, res) => {
-    Question.find({})
-        .then(questions => {
-            res.render('quiz', {questions});
-        })
-        .catch(err => {
-            console.error('La recherche des questions n\'a pas été réussie :', err);
-            res.render('erreur', { error: 'Une erreur est survenue au niveau de la recherche de données' });
-        });
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        if (err) return res.status(403).redirect('/connexion');
+        req.userId = decoded.userId;
+        next();
+    });
+}
+
+//Quiz
+router.get('/quiz', async (req, res) => {
+    try{
+        const quiz = await Quiz.findOne({Titre : "o"});
+        const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
+        if(quiz != null){
+            console.log(currentQuestionIndex);
+            res.render('quiz2', {quiz, currentQuestionIndex});
+        }else{
+            console.log('Le quiz est nul');
+        }
+    } catch (error){
+        console.error('Error: ', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
+
+//Soumission des réponses + actualisation à la prochaine question
+
+router.post('/submit-answer', async(req, res) => {
+    const currentQuestionIndex = req.body.currentQuestionIndex || 0;
+    const nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
+
+    const quiz = await Quiz.findOne({ Titre: "o" });
+    const indexBonneReponse = quiz.questions[currentQuestionIndex].response;
+    const indexReponseUtilisateur = parseInt(req.body.answer);
+
+    if(indexBonneReponse == indexReponseUtilisateur){
+        console.log('Bonne reponse');
+    }else{
+        console.log('Mauvaise reponse');
+    }
+    res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
+  });
 
 module.exports = router;
