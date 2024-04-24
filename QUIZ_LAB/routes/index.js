@@ -13,6 +13,9 @@ const Question = require('../models/question');
 const User = require('../models/user');
 const Quiz = require('../models/quiz');
 
+//Variable temporaire
+let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
+
 //Conversion des données en format json
 router.use(express.json());
 
@@ -34,6 +37,10 @@ router.get('/connexion', (req, res) => {
 //Cheminement de la page d'inscription
 router.get('/inscription', (req, res) => {
     res.render('inscription', {existingUser : false, nombreErreur : 50});
+});
+
+router.get('/quiz-result', (req, res) => {
+    res.render('quiz-result');
 });
 
 
@@ -121,8 +128,7 @@ router.get('/quiz', async (req, res) => {
 });
 
 
-//Soumission des réponses + actualisation à la prochaine question
-
+//Soumission des réponses + actualisation à la prochaine question + calcul de score temporaire
 router.post('/submit-answer', async(req, res) => {
     const currentQuestionIndex = req.body.currentQuestionIndex || 0;
     const nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
@@ -133,22 +139,7 @@ router.post('/submit-answer', async(req, res) => {
 
     if(indexBonneReponse == indexReponseUtilisateur){
         try{
-            console.log(req.cookies.token);
-            const token = req.cookies.token;
-            const decoded = jwt.verify(token, JWT_SECRET);
-            const userId = decoded.userID;
-
-            const user = await User.findById(userId);
-
-            console.log(user);
-
-            if(user.scores && user.scores.length>0){
-                user.scores[0] += 1;
-            }else{
-                user.scores = [1];
-            }
-
-            await user.save();
+            scoreTemp[currentQuestionIndex] = true;
 
             console.log('Bonne reponse. Score updated.')
         }catch(error){
@@ -159,5 +150,37 @@ router.post('/submit-answer', async(req, res) => {
     }
     res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
   });
+
+  //Soumission finale du questionnaire + traitement du score
+  router.post('/submit-quiz', async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        const decoded = jwt.verify(token, JWT_SECRET);
+        const userId = decoded.userID;
+        const user = await User.findById(userId);
+
+        let scoreFinal = 0;
+
+        for(let i = 0 ; i < 10 ; i++){
+            if(scoreTemp[i]){
+                scoreFinal++;
+            }
+        }
+
+        if (scoreFinal > (user.scores && user.scores.length > 0 ? user.scores[0] : 0)) {
+            user.scores[0] = scoreFinal;
+            await user.save();
+            console.log('Score Utilisateur mise à jour.');
+        } else {
+            console.log('Score temporaire est plus bas.');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    //Remise à zéro pour le prochain test
+    temporaryScore = 0;
+    res.redirect('/quiz-result');
+});
 
 module.exports = router;

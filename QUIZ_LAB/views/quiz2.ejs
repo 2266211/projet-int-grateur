@@ -1,4 +1,3 @@
-<!-- quiz.ejs -->
 <html>
 <head>
   <title>Quiz</title>
@@ -12,7 +11,14 @@
       <input type="radio" name="answer" value="<%= i %>">
       <%= quiz.questions[currentQuestionIndex].options[i] %><br>
     <% } %>
-    <button type="submit">Next</button>
+    <% if (currentQuestionIndex < 9) { %>
+      <button type="submit" onclick="updateFormAction('submit')">Submit</button>
+    <% } %>
+  </form>
+  <form action="/submit-quiz" method="post">
+    <% if (currentQuestionIndex == 9) { %>
+      <button type="submit"">Submit</button>
+    <% } %>
   </form>
 </body>
 </html>
