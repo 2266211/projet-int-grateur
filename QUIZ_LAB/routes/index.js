@@ -3,6 +3,7 @@ const path = require('path');
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const JWT_SECRET = 'hopla';
 
 require('./config');
@@ -22,6 +23,8 @@ router.use(express.urlencoded({extended : false}));
 router.get('/', (req, res) => {
     res.render('index');
 });
+
+router.use(cookieParser());
 
 //Cheminement de la page de connexion
 router.get('/connexion', (req, res) => {
@@ -79,7 +82,7 @@ router.post("/connexion", async (req, res) => {
             res.redirect('/')
             console.log(token);
         }else{
-            req.render('connexion', {nombreErreur : 0})
+            req.render('connexion', {nombreErreur : 0});
         }
         }
     }catch(error){
@@ -129,7 +132,28 @@ router.post('/submit-answer', async(req, res) => {
     const indexReponseUtilisateur = parseInt(req.body.answer);
 
     if(indexBonneReponse == indexReponseUtilisateur){
-        console.log('Bonne reponse');
+        try{
+            console.log(req.cookies.token);
+            const token = req.cookies.token;
+            const decoded = jwt.verify(token, JWT_SECRET);
+            const userId = decoded.userID;
+
+            const user = await User.findById(userId);
+
+            console.log(user);
+
+            if(user.scores && user.scores.length>0){
+                user.scores[0] += 1;
+            }else{
+                user.scores = [1];
+            }
+
+            await user.save();
+
+            console.log('Bonne reponse. Score updated.')
+        }catch(error){
+            console.log(error);
+        }
     }else{
         console.log('Mauvaise reponse');
     }
