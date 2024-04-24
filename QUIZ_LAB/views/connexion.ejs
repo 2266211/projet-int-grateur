@@ -71,20 +71,30 @@
     </nav>
     <div class ="container-form">
       <form action="/connexion" method="post" >
-          <fieldset>
-            <legend>Connexion</legend>
-            <div>
-              <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrée un pseudo" name = "nom">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div>
-              <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-              <input type="password" name = "motdepasse" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </fieldset>
-        </form>
+        <fieldset>
+          <legend>Connexion</legend>
+          <div>
+            <label for="inputPrenom" class="form-label mt-4">Prénom</label>
+            <input class="form-control" id="inputPrenom" aria-describedby="Prenom" placeholder="Entrée votre prénom" name = "prenom">
+          </div>
+          <div>
+            <label for="inputNom" class="form-label mt-4">Nom</label>
+            <input class="form-control" id="inputNom" aria-describedby="Nom" placeholder="Entrée votre nom" name = "nom">
+            <small id="infoPerso" class="form-text text-muted">Les informations personnelles ne seront jamais divulgées à des sources extérieures.</small>
+          </div>
+          <div>
+            <label for="inputMotdepasse" class="form-label mt-4">Mot de passe</label>
+            <input type="password" name = "motdepasse" class="form-control" id="inputMotdepasse" placeholder="Entrée votre mot de passe" autocomplete="off">
+            <% if (nombreErreur == 1) { %>
+              <small id="messageErreur" class="form-text text-danger">Le prenom et le nom ne concorde ou n'existe pas.</small>
+            <% } %>
+            <% if (nombreErreur == 0) { %>
+              <small id="messageErreur" class="form-text text-danger">Le prenom et le nom ne concorde pas avec le mot de passe.</small>
+            <% } %>
+          </div>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+        </fieldset>
+      </form>
   </div>
 </body>
 </html>
