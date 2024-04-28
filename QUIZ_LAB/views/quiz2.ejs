@@ -12,12 +12,12 @@
       <%= quiz.questions[currentQuestionIndex].options[i] %><br>
     <% } %>
     <% if (currentQuestionIndex < 9) { %>
-      <button type="submit" onclick="updateFormAction('submit')">Submit</button>
+      <button type="submit" onclick="updateFormAction('submit')">Next</button>
     <% } %>
   </form>
   <form action="/submit-quiz" method="post">
     <% if (currentQuestionIndex == 9) { %>
-      <button type="submit"">Submit</button>
+      <button type="submit">Submit</button>
     <% } %>
   </form>
 </body>

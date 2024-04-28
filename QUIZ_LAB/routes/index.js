@@ -15,6 +15,7 @@ const Quiz = require('../models/quiz');
 
 //Variable temporaire
 let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
+let finalScore = 0;
 
 //Conversion des données en format json
 router.use(express.json());
@@ -37,10 +38,6 @@ router.get('/connexion', (req, res) => {
 //Cheminement de la page d'inscription
 router.get('/inscription', (req, res) => {
     res.render('inscription', {existingUser : false, nombreErreur : 50});
-});
-
-router.get('/quiz-result', (req, res) => {
-    res.render('quiz-result');
 });
 
 
@@ -142,11 +139,13 @@ router.post('/submit-answer', async(req, res) => {
             scoreTemp[currentQuestionIndex] = true;
 
             console.log('Bonne reponse. Score updated.')
+            console.log(scoreTemp[currentQuestionIndex]);
         }catch(error){
             console.log(error);
         }
     }else{
         console.log('Mauvaise reponse');
+        console.log(scoreTemp[currentQuestionIndex]);
     }
     res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
   });
@@ -159,13 +158,27 @@ router.post('/submit-answer', async(req, res) => {
         const userId = decoded.userID;
         const user = await User.findById(userId);
 
+        const quiz = await Quiz.findOne({ Titre: "o" });
+        quiz.foisFait++;
+
         let scoreFinal = 0;
 
         for(let i = 0 ; i < 10 ; i++){
             if(scoreTemp[i]){
                 scoreFinal++;
             }
+            if(scoreTemp[i]){
+                quiz.questions[i].foisReussi++;
+            }
         }
+
+        if(scoreFinal > 5){
+            quiz.foisReussi++;
+        }
+
+        await quiz.save();
+
+        finalScore = scoreFinal;
 
         if (scoreFinal > (user.scores && user.scores.length > 0 ? user.scores[0] : 0)) {
             user.scores[0] = scoreFinal;
@@ -178,9 +191,21 @@ router.post('/submit-answer', async(req, res) => {
         console.error(error);
     }
 
-    //Remise à zéro pour le prochain test
-    temporaryScore = 0;
+    //Remise à zéro du array de scores temporaires
+    for(let i = 0 ; i < scoreTemp.length; i++){
+        scoreTemp[i] = false;
+    }
     res.redirect('/quiz-result');
+});
+
+router.get('/quiz-result', async (req, res) => {
+    try {
+        console.log(finalScore);
+        res.render('quiz-result', { scoreFinal: finalScore});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 module.exports = router;
