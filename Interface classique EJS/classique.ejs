@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>QuizLab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Add Bootstrap CDN and a link to jQuery-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!--Add Bootstrap CDN and a link to jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .jumbotron {
+            background-color: #0d6efd;
+            /*Blue*/
+            color: #ffc107;
+            /*Lets make the jumbotron look good by adding some padding:*/
+            padding: 100px 25px;
+        }
+
+        h1 {
+            /*font-family: "Sofia", sans-serif;*/
+            text-shadow: 3px 3px 3px #090404;
+        }
+
+        /*.bg-grey - adds a gray background color*/
+        .bg-grey {
+            background-color: #f6f6f6;
+            /* Grey */
+        }
+
+        /*Align the description of the website*/
+        .col-sm-8 {
+            text-align: center;
+        }
+
+        .col-sm-4 {
+            text-align: center;
+        }
+
+        .container-fluid {
+            padding: 60px 50px
+        }
+
+        /*Set the size and color of the logos*/
+        .logo {
+            color: #0d6efd;
+            font-size: 100px;
+        }
+
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 150px;
+        }
+
+        /*Style the panels*/
+        .panel {
+            border: 1px solid #0d6efd;
+            border-radius: 0;
+            transition: box-shadow 0.5s;
+        }
+
+        .panel-heading {
+            color: #fff !important;
+            background-color: #0d6efd !important;
+            padding: 25px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        /* Bouton fleche */
+        .btn-fleche i {
+            transition: rotate 250ms ease-in-out;
+            display: block;
+            color: #0d6efd;
+        }
+
+        .btn-fleche.collapsed i {
+            rotate: 180deg;
+        }
+
+        #ch.collapse,
+        #meth.collapse,
+        #phy.collapse {
+            padding-bottom: 20px;
+        }
+
+        #Services.container-fluid {
+            padding: 25px;
+        }
+
+        /*Style the footer*/
+        footer .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+
+        /*Style the carousel in CSS*/
+        .carousel-control.right,
+        .carousel-control.left {
+            background-image: none;
+            color: #0d6efd;
+        }
+
+        .carousel-indicators li {
+            border-color: #0d6efd;
+        }
+
+        .carousel-indicators li.active {
+            background-color: #0d6efd;
+        }
+
+        .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+        }
+
+        /*Style the navbar*/
+        .navbar {
+            margin-bottom: 0;
+            background-color: #0d6efd;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+        }
+
+        .navbar li a,
+        .navbar .navbar-brand {
+            color: #fff !important;
+        }
+
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #0d6efd !important;
+            background-color: #fff !important;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+    </style>
+</head>
+
+<body id="myPage">
+    <!--Add a navbar at the top of the page that collapses on smaller screens:-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#myPage">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#À propos">À PROPOS</a></li>
+                    <li><a href="#Matières">EXAMENS</a></li>
+                    <li><a href="#Services">SERVICES</a></li>
+                    <!--Revenir a laccueil ici-->
+                    <li><a href="">PAGE D'ACCUEIL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="jumbotron text-center"> <!--Add the .text-center class to center the text inside-->
+        <h1>QuizLab</h1>
+        <p>Séries de tests pour les cégepiens</p>
+    </section>
+    <section id="À propos" class="container-fluid bg-grey">
+        <!--Separate the icon and the "about text" by creating two columns (.col-sm-8 and .col-sm-4)-->
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Bienvenue sur l'interface classique!</h2>
+                <p>Vous pouvez faire des tests ainsi que consulter vos résultats.</p>
+            </div>
+            <div class="col-sm-4">
+                <!--Logo lit-->
+                <span class="glyphicon glyphicon-education logo"></span>
+            </div>
+        </div>
+    </section>
+    <!--Add Matières container-->
+    <section id="Matières" class="container-fluid">
+        <div class="text-center">
+            <h2>Tests</h2>
+            <h4>Voici les tests que vous pouvez faire et dont vous pouvez consulter vos résultats :</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h2>Chimie</h2>
+                    </div>
+                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
+                        <i class="bi bi-chevron-up"></i>
+                    </button>
+                    <div id="ch" class="collapse">
+                        <h3>Chimie I (générale)</h3>
+                        <img src="./img/general.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Chimie II (des solutions)</h3>
+                        <img src="./img/solutions.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Chimie III (organique)</h3>
+                        <img src="./img/organic.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h2>Mathématiques</h2>
+                    </div>
+                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
+                        <i class="bi bi-chevron-up"></i>
+                    </button>
+                    <div id="meth" class="collapse">
+                        <h3>Calcul I (différentiel)</h3>
+                        <img src="./img/derivee.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Calcul II (intégral)</h3>
+                        <img src="./img/huves.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Mathématiques discrètes</h3>
+                        <img src="./img/discrete.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Algèbre linéaire et vectorielle</h3>
+                        <img src="./img/linear.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h2>Physique</h1>
+                    </div>
+                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
+                        <i class="bi bi-chevron-up"></i>
+                    </button>
+                    <div id="phy" class="collapse">
+                        <h3>Physique I (mécanique)</h3>
+                        <img src="./img/mechanics.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Physique II (électrique et magnétique)</h3>
+                        <img src="./img/elec.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                        <h3>Physique III (ondulatoire et moderne)</h3>
+                        <img src="./img/waves.png">
+                        <button type="button submit">Faire le test</button>
+                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Add a carousel-->
+    <section id="Services" class="container-fluid bg-grey">
+        <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+            <h2>Autres services</h2>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h4>Si vous avez des questions,<br><span style="font-style:normal;"></span></h4>
+                </div>
+                <div class="item">
+                    <h4>Ou si vous rencontrez des problèmes techniques,<br><span style="font-style:normal;"></span></h4>
+                </div>
+                <div class="item">
+                    <h4>Contactez-nous au (514)809-6334. Il nous fera plaisir de vous aider!
+                        <br><span style="font-style:normal;"></span>
+                    </h4>
+                </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+    <!--Add an "Up Arrow" icon to the footer, which will take the user to the top of the page when clicked on-->
+    <footer class="container-fluid text-center">
+        <a href="#myPage" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+    </footer>
+</body>
+
+<html>
