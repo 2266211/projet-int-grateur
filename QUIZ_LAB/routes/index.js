@@ -17,6 +17,10 @@ const Quiz = require('../models/quiz');
 let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
 let finalScore = 0;
 
+//Variable temporelle
+let tempsDebut = 0;
+let tempsPris = 0;
+
 //Conversion des données en format json
 router.use(express.json());
 
@@ -109,9 +113,14 @@ function verifierToken(req, res, next) {
 
 //Quiz
 router.get('/quiz', async (req, res) => {
+    
     try{
         const quiz = await Quiz.findOne({Titre : "o"});
         const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
+        if(currentQuestionIndex == 0){
+        tempsDebut = Math.floor(Date.now()/1000);
+        console.log(tempsDebut);
+        }
         if(quiz != null){
             console.log(currentQuestionIndex);
             res.render('quiz2', {quiz, currentQuestionIndex});
@@ -122,6 +131,7 @@ router.get('/quiz', async (req, res) => {
         console.error('Error: ', error);
         res.status(500).send('Internal Server Error');
     }
+    
 });
 
 
@@ -175,6 +185,12 @@ router.post('/submit-answer', async(req, res) => {
         if(scoreFinal > 5){
             quiz.foisReussi++;
         }
+
+        console.log(tempsDebut);
+
+        tempsPris = (Math.floor(Date.now()/1000)) - (tempsDebut);
+        console.log(tempsPris);
+        quiz.temps.push(tempsPris);
 
         await quiz.save();
 
