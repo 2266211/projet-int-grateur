@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Question = require('./question');
 
 const quizSchema = new mongoose.Schema({
   Titre: { type: String, required: true },

@@ -15,6 +15,14 @@ const Quiz = require('../models/quiz');
 
 //Variable temporaire
 let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
+let finalScore = 0;
+
+//Variable temporelle
+let tempsDebut = 0;
+let tempsPris = 0;
+
+//Varible du questionnaire le plus récent
+let testCourant = "";
 
 //Conversion des données en format json
 router.use(express.json());
@@ -37,10 +45,6 @@ router.get('/connexion', (req, res) => {
 //Cheminement de la page d'inscription
 router.get('/inscription', (req, res) => {
     res.render('inscription', {existingUser : false, nombreErreur : 50});
-});
-
-router.get('/quiz-result', (req, res) => {
-    res.render('quiz-result');
 });
 
 
@@ -110,11 +114,26 @@ function verifierToken(req, res, next) {
     });
 }
 
-//Quiz
+//Accès au quiz différent dépendamment du button sélectionner dans la page web
+router.post('/acces-quiz', (req,res)=>  {
+    try{
+        testCourant = req.body.nomTest;
+        res.redirect('/quiz');
+    }catch(error){
+        console.error('Error: ' , error);
+        res.status(500).send('Internal Server Error');
+    }
+})
+
+//Quiz + on va chercher le qui en tant que tel + début du chrono pour le temps
 router.get('/quiz', async (req, res) => {
     try{
         const quiz = await Quiz.findOne({Titre : "o"});
         const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
+        if(currentQuestionIndex == 0){
+        tempsDebut = Math.floor(Date.now()/1000);
+        console.log(tempsDebut);
+        }
         if(quiz != null){
             console.log(currentQuestionIndex);
             res.render('quiz2', {quiz, currentQuestionIndex});
@@ -125,6 +144,7 @@ router.get('/quiz', async (req, res) => {
         console.error('Error: ', error);
         res.status(500).send('Internal Server Error');
     }
+    
 });
 
 
@@ -142,16 +162,18 @@ router.post('/submit-answer', async(req, res) => {
             scoreTemp[currentQuestionIndex] = true;
 
             console.log('Bonne reponse. Score updated.')
+            console.log(scoreTemp[currentQuestionIndex]);
         }catch(error){
             console.log(error);
         }
     }else{
         console.log('Mauvaise reponse');
+        console.log(scoreTemp[currentQuestionIndex]);
     }
     res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
   });
 
-  //Soumission finale du questionnaire + traitement du score
+  //Soumission finale du questionnaire + traitement du score + traitement du temps pris
   router.post('/submit-quiz', async (req, res) => {
     try {
         const token = req.cookies.token;
@@ -159,13 +181,33 @@ router.post('/submit-answer', async(req, res) => {
         const userId = decoded.userID;
         const user = await User.findById(userId);
 
+        const quiz = await Quiz.findOne({ Titre: "o" });
+        quiz.foisFait++;
+
         let scoreFinal = 0;
 
         for(let i = 0 ; i < 10 ; i++){
             if(scoreTemp[i]){
                 scoreFinal++;
             }
+            if(scoreTemp[i]){
+                quiz.questions[i].foisReussi++;
+            }
         }
+
+        if(scoreFinal > 5){
+            quiz.foisReussi++;
+        }
+
+        console.log(tempsDebut);
+
+        tempsPris = (Math.floor(Date.now()/1000)) - (tempsDebut);
+        console.log(tempsPris);
+        quiz.temps.push(tempsPris);
+
+        await quiz.save();
+
+        finalScore = scoreFinal;
 
         if (scoreFinal > (user.scores && user.scores.length > 0 ? user.scores[0] : 0)) {
             user.scores[0] = scoreFinal;
@@ -178,9 +220,22 @@ router.post('/submit-answer', async(req, res) => {
         console.error(error);
     }
 
-    //Remise à zéro pour le prochain test
-    temporaryScore = 0;
+    //Remise à zéro du array de scores temporaires
+    for(let i = 0 ; i < scoreTemp.length; i++){
+        scoreTemp[i] = false;
+    }
     res.redirect('/quiz-result');
+});
+
+//Affichage de la page de résultat après avoir soumis un questionnaire
+router.get('/quiz-result', async (req, res) => {
+    try {
+        console.log(finalScore);
+        res.render('quiz-result', { scoreFinal: finalScore});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 module.exports = router;
