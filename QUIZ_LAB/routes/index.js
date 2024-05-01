@@ -21,6 +21,9 @@ let finalScore = 0;
 let tempsDebut = 0;
 let tempsPris = 0;
 
+//Varible du questionnaire le plus récent
+let testCourant = "";
+
 //Conversion des données en format json
 router.use(express.json());
 
@@ -111,9 +114,19 @@ function verifierToken(req, res, next) {
     });
 }
 
-//Quiz
+//Accès au quiz différent dépendamment du button sélectionner dans la page web
+router.post('/acces-quiz', (req,res)=>  {
+    try{
+        testCourant = req.body.nomTest;
+        res.redirect('/quiz');
+    }catch(error){
+        console.error('Error: ' , error);
+        res.status(500).send('Internal Server Error');
+    }
+})
+
+//Quiz + on va chercher le qui en tant que tel + début du chrono pour le temps
 router.get('/quiz', async (req, res) => {
-    
     try{
         const quiz = await Quiz.findOne({Titre : "o"});
         const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
@@ -160,7 +173,7 @@ router.post('/submit-answer', async(req, res) => {
     res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
   });
 
-  //Soumission finale du questionnaire + traitement du score
+  //Soumission finale du questionnaire + traitement du score + traitement du temps pris
   router.post('/submit-quiz', async (req, res) => {
     try {
         const token = req.cookies.token;
@@ -214,6 +227,7 @@ router.post('/submit-answer', async(req, res) => {
     res.redirect('/quiz-result');
 });
 
+//Affichage de la page de résultat après avoir soumis un questionnaire
 router.get('/quiz-result', async (req, res) => {
     try {
         console.log(finalScore);
