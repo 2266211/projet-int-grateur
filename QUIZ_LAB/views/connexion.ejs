@@ -1,100 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css">
+    <title>QuizLab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Add Bootstrap CDN and a link to jQuery-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!--Add Bootstrap CDN and a link to jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        body {
-            background-image: url('https://w.forfun.com/fetch/ae/ae2cbe4c74a79df332455ab8fe742e7c.jpeg');
-            background-size: cover;
-            background-position: top;
+        .jumbotron {
+            background-color: #0d6efd;
+            /*Blue*/
+            color: #ffc107;
         }
-        .container-form {
-            max-width: 50%; 
-            margin: 0 auto; 
-            padding: 20px; 
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+
+        h1 {
+            text-shadow: 3px 3px 3px #090404;
         }
-        .d-flex .btn-primary, .d-flex .btn-secondary{
-            margin-right: 5px;
-            margin-left: 5px;
+
+        h2 {
+            color: #0d6efd
         }
-        div:last-child input {
+
+        /*.bg-grey - adds a gray background color*/
+        .bg-grey {
+            background-color: #f6f6f6;
+            /* Grey */
+        }
+
+        /*Lets make the containers look good by adding some padding*/
+        .container-fluid {
+            padding: 20px 50px;
+        }
+
+        .btn-default {
+            margin: 5px;
+        }
+
+        .form-control {
+            width: 750px; 
+        }
+
+        #password.form-control{
             margin-bottom: 20px;
         }
-        /* Add hover transition */
-        .btn-primary:hover, .btn-secondary:hover {
-            transition: 1s ease;
+        .bi {
+            color: #ffc107;
+            font-size: 30px;
         }
-        .btn-secondary:hover{
-          background-color: #000; /* New background color */
-          color: #fff; /* New text color */
+
+        .col-sm-1{
+            margin-right: 130px;
         }
-        .btn-primary:hover {
-            background-color: #fff; /* New background color */
-            color: #000; /* New text color */
+
+        #retour.btn-default{
+            background-color: #0d6efd;
+            border-color: #0d6efd;
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Quiz Lab</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/">Accueil
-                  <span class="visually-hidden">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Nos questionnaires</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">À Propos</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-                <button type="button" class="btn btn-primary">Connexion</button>
-                <button type="button" class="btn btn-secondary">Inscirption</button>
-            </form>
-          </div>
+    <!--Bande bleu en haut de la -->
+    <section class="jumbotron text-center"> <!--Add the .text-center class to center the text inside-->
+        <div class="row">
+            <div class="col-sm-1">
+                <button id="retour"class="btn btn-default" type="button"><i class="bi bi-arrow-return-left"></i></button>
+            </div>
+            <div class="col-sm-8">
+                <h1>QuizLab</h1>
+                <p>Séries de tests pour les cégepiens</p>
+            </div>
         </div>
-    </nav>
-    <div class ="container-form">
-      <form action="/connexion" method="post" >
-        <fieldset>
-          <legend>Connexion</legend>
-          <div>
-            <label for="inputPrenom" class="form-label mt-4">Prénom</label>
-            <input class="form-control" id="inputPrenom" aria-describedby="Prenom" placeholder="Entrée votre prénom" name = "prenom">
-          </div>
-          <div>
-            <label for="inputNom" class="form-label mt-4">Nom</label>
-            <input class="form-control" id="inputNom" aria-describedby="Nom" placeholder="Entrée votre nom" name = "nom">
-            <small id="infoPerso" class="form-text text-muted">Les informations personnelles ne seront jamais divulgées à des sources extérieures.</small>
-          </div>
-          <div>
-            <label for="inputMotdepasse" class="form-label mt-4">Mot de passe</label>
-            <input type="password" name = "motdepasse" class="form-control" id="inputMotdepasse" placeholder="Entrée votre mot de passe" autocomplete="off">
-            <% if (nombreErreur == 1) { %>
-              <small id="messageErreur" class="form-text text-danger">Le prenom et le nom ne concorde ou n'existe pas.</small>
-            <% } %>
-            <% if (nombreErreur == 0) { %>
-              <small id="messageErreur" class="form-text text-danger">Le prenom et le nom ne concorde pas avec le mot de passe.</small>
-            <% } %>
-          </div>
-          <button type="submit" class="btn btn-primary">Se connecter</button>
-        </fieldset>
-      </form>
-  </div>
+    </section>
+    <section id="bigBox" class="container-fluid bg-grey">
+        <form action="/connexion" method="post" >
+            <fieldset>
+            <div class="col-sm-8">
+                <legend>Connexion</legend>
+                <div>
+                    <label for="inputEmail" class="text">Email</label>
+                    <input class="form-control" type="email" id="inputEmail" aria-describedby="Adresse Courriel" placeholder="Adresse Courriel" name = "adresseCourriel" required>
+                </div>
+                <div>
+                    <label for="inputMotdepasse" class="text">Mot de passe</label>
+                    <input class="form-control" type="password" id="inputMotdepasse" aria-describedby="Mot de passe" placeholder="Mot de Passe" name = "motdepasse" required>
+                </div>
+                <button class="btn btn-default" type="submit">Connecter</button>
+                <% if (nombreErreur == 1) { %>
+                    <small id="messageErreur" class="form-text text-danger">L'adresse courriel n'existe pas. Veuillez utiliser la page d'inscription.</small>
+                <% } %>
+                <% if (nombreErreur == 0) { %>
+                    <small id="messageErreur" class="form-text text-danger">Le mot de passe ne concorde pas avec l'adresse courriel donnée.</small>
+                <% } %>
+            </div>
+            </fieldset>
+        </form>
+        <h2 class="text-center">CONNEXION</h2>
+    </section>
 </body>
-</html>
+<html>
