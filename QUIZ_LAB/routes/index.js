@@ -32,7 +32,7 @@ router.use(express.urlencoded({extended : false}));
 
 //Cheminement de la page d'accueil
 router.get('/', (req, res) => {
-    res.render('index');
+    res.render('Accueil/accueil');
 });
 
 router.use(cookieParser());
@@ -53,11 +53,13 @@ router.post("/inscription", async (req, res) => {
     const data = {
         prenom: req.body.prenom,
         nom : req.body.nom,
-        adresseCourriel : "whatever",
-        motdepasse : req.body.motdepasse
+        adresseCourriel : req.body.adresseCourriel,
+        motdepasse : req.body.motdepasse,
+        scores : [0,0,0,0,0,0,,0,0,0,0],
+        admin : false
     }
 
-    const existingUser = await User.findOne({prenom : data.prenom}, {nom : data.nom}, {adresseCourriel : data.adresseCourriel});
+    const existingUser = await User.findOne({adresseCourriel : data.adresseCourriel});
     if(existingUser){
         res.render('inscription', {existingUser : true, nombreErreur : 1})
     }else if(data.motdepasse.length < 6){
@@ -68,6 +70,8 @@ router.post("/inscription", async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.motdepasse, saltRounds);
 
+        data.prenom = req.
+
         data.motdepasse = hashedPassword; 
 
         const userdata = await User.create(data);
@@ -76,10 +80,10 @@ router.post("/inscription", async (req, res) => {
     }
 });
 
-//Connexion
+//Connexion à un compte déjà existant, qu'il soit un compte admin ou classique
 router.post("/connexion", async (req, res) => {
     try{
-        const user = await User.findOne({nom: req.body.nom, prenom : req.body.prenom})
+        const user = await User.findOne({adresseCourriel : req.body.adresseCourriel})
         
         if(!user){
                 res.render('connexion', {nombreErreur : 1})
@@ -93,7 +97,7 @@ router.post("/connexion", async (req, res) => {
             res.redirect('/')
             console.log(token);
         }else{
-            req.render('connexion', {nombreErreur : 0});
+            res.render('connexion', {nombreErreur : 0});
         }
         }
     }catch(error){
@@ -125,7 +129,7 @@ router.post('/acces-quiz', (req,res)=>  {
     }
 })
 
-//Quiz + on va chercher le qui en tant que tel + début du chrono pour le temps
+//Quiz + début du chrono pour le temps
 router.get('/quiz', async (req, res) => {
     try{
         const quiz = await Quiz.findOne({Titre : "o"});
@@ -136,7 +140,7 @@ router.get('/quiz', async (req, res) => {
         }
         if(quiz != null){
             console.log(currentQuestionIndex);
-            res.render('quiz2', {quiz, currentQuestionIndex});
+            res.render('temp', {quiz, currentQuestionIndex});
         }else{
             console.log('Le quiz est nul');
         }
@@ -170,7 +174,7 @@ router.post('/submit-answer', async(req, res) => {
         console.log('Mauvaise reponse');
         console.log(scoreTemp[currentQuestionIndex]);
     }
-    res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
+    res.redirect(`/temp?currentQuestionIndex=${nextQuestionIndex}`);
   });
 
   //Soumission finale du questionnaire + traitement du score + traitement du temps pris
