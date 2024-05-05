@@ -27,15 +27,64 @@ let testCourant = "";
 //Conversion des données en format json
 router.use(express.json());
 
+router.use(express.static('public'));
+
 //Encodation de l'url
 router.use(express.urlencoded({extended : false}));
 
+router.use(cookieParser());
+
 //Cheminement de la page d'accueil
-router.get('/', (req, res) => {
-    res.render('Accueil/accueil');
+router.get('/', async (req, res) => {
+    try{
+        if(req.cookies && Object.keys(req.cookies).length > 0){
+            const token = req.cookies.token;
+            const decoded = jwt.verify(token, JWT_SECRET);
+            const userId = decoded.userID;
+            const user = await User.findById(userId);
+            if(!user){
+                
+            }else{
+                res.render('accueil', {utilisateurCo : true});
+            }
+        }else{
+            res.render('accueil', {utilisateurCo : false});
+        }
+
+    }catch(error){
+        console.log(error)
+    }
+
 });
 
-router.use(cookieParser());
+router.get('/utilisateur', async (req,res) => {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
+
+    if(user.admin){
+        res.redirect('/admin');
+    }else{
+        res.redirect('/classique')
+    }
+})
+
+//Cheminement utilisateur admin
+router.get('/admin', (req,res) => {
+    res.render('admin');
+})
+
+//Cheminement utilisateur classique
+router.get('/classique', (req,res) => {
+    res.render('classique');
+})
+
+//Cheminement rapide pour la déconnexion + clear des cookies
+router.get('/deconnexion', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/');
+});
 
 //Cheminement de la page de connexion
 router.get('/connexion', (req, res) => {
@@ -46,7 +95,6 @@ router.get('/connexion', (req, res) => {
 router.get('/inscription', (req, res) => {
     res.render('inscription', {existingUser : false, nombreErreur : 50});
 });
-
 
 //Création d'un compte
 router.post("/inscription", async (req, res) => {

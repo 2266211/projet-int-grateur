@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   adresseCourriel : {type : String, required : true},
   motdepasse: { type: String, required: true },
   scores: {type: [Number]},
+  admin : {type : Boolean, required : true},
   createdAt: { type: Date, default: Date.now }
 });
 

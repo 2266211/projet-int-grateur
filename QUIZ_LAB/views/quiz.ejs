@@ -1,24 +1,74 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Quiz</title>
+    <meta charset="UTF-8">
+    <title>Quiz Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body { padding-top: 70px; }
+        .navbar {
+            background-color: #0d6efd;
+            border: none;
+            color: #ffc107; /* Jaune */
+            text-shadow: 2px 2px 4px #000; /* Black shadow */
+        }
+        
+        .question-section {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            border-radius: 4px;
+            background-color: #f6f6f6;
+        }
+        .answer-btn {
+            text-align: left;
+            margin-top: 10px;
+            width: 100%;
+        }
+      
+    </style>
 </head>
 <body>
-  <h1><%= quiz.Titre %></h1>
-  <form action="/submit-answer" method="post">
-    <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
-    <h2><%= quiz.questions[currentQuestionIndex].question %></h2>
-    <% for (let i = 0; i < quiz.questions[currentQuestionIndex].options.length; i++) { %>
-      <input type="radio" name="answer" value="<%= i %>">
-      <%= quiz.questions[currentQuestionIndex].options[i] %><br>
-    <% } %>
-    <% if (currentQuestionIndex < 9) { %>
-      <button type="submit" onclick="updateFormAction('submit')">Next</button>
-    <% } %>
-  </form>
-  <form action="/submit-quiz" method="post">
-    <% if (currentQuestionIndex == 9) { %>
-      <button type="submit">Submit</button>
-    <% } %>
-  </form>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">QuizLab Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <% for (let i = 0; i < quiz.questions.length; i++) { %>
+                        <li><a href="#question<%= i + 1 %>">Question <%= i + 1 %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <form action="/submit-answer" method="post">
+                    <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
+                    <h2><%= quiz.questions[currentQuestionIndex].question %></h2>
+                    <% for (let i = 0; i < quiz.questions[currentQuestionIndex].options.length; i++) { %>
+                        <input type="radio" name="answer" value="<%= i %>">
+                        <%= quiz.questions[currentQuestionIndex].options[i] %><br>
+                    <% } %>
+                    <% if (currentQuestionIndex < 9) { %>
+                      <button type="submit" onclick="updateFormAction('submit')">Next</button>
+                    <% } %>
+                </form>
+                <form action="/submit-quiz" method="post">
+                    <% if (currentQuestionIndex == 9) { %>
+                      <button type="submit">Submit</button>
+                    <% } %>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
