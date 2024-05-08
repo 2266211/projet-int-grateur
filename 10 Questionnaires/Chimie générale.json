@@ -1,0 +1,123 @@
+{
+  "titre": "Chimie générale",
+  "questions": [
+    {
+      "question": "Nomme la molécule Mg(CH3COO)2 ",
+      "options": [
+        "Acétate de magnésium",
+        "Hydrure de magnésium",
+        "Glucose de magnésium",
+        "Fluorine de magnésium"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Dans environ 1081 u de carbone naturel (12,01 u) combien y’a-t-il d’atome de 12C et 13 C? ",
+      "options": [
+        "89",
+        "91",
+        "93",
+        "95"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Dans un échantillon de 1H2 30P 15O4, dont la masse est de 2418 u, combien y a-t-il de neutrons?",
+      "options": [
+        "500",
+        "543",
+        "586",
+        "621"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un échantillon de 1,2 g d’une molécule organique contenant du carbone, de l’hydrogène et de l’oxygène est brûlé. On en obtient 2,694 g de CO2 et 0,661 g de H2O. Quelle est la formule brute de cette molécule?",
+      "options": [
+        "(C4H6O2)n",
+        "(C6H6O2)n",
+        "(C5H6O2)n",
+        "(C5H6O4)n"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    },
+    {
+      "question": "Le sulfate de fer (III) réagit avec le chlorure de baryum pour une réaction de double déplacement. Quelle masse de minerai de sulfate de fer (III) de pureté 93% m/m faudra-t-il utiliser pour obtenir 25 g de sulfate de baryum?",
+      "options": [
+        "125 g",
+        "154 g",
+        "188 g",
+        "199 g "
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un mélange de chlorure de magnésium et de chlorure de potassium pesant 1,85 g donne 4,85 g de précipités de chlorure d’argent lorsqu’il est dissous dans l’eau et traité avec du nitrate d’argent. Quel est le pourcentage en masse de chlorure de potassium dans le mélange?",
+      "options": [
+        "69,1%",
+        "80,2%",
+        "71,3%",
+        "75,5%"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    },
+    {
+      "question": "À 21,5 degrés Celsius, un ballon dégonflé est rempli d’hélium jusqu’à 12,5 L sous une pression de 101,3 kPa. De l’oxygène est ensuite ajouté jusqu’à ce que le ballon ait un volume de 26,0 L, sous une pression de 101,3 kPa. Quelle masse d’hélium ce ballon contient-il?",
+      "options": [
+        "20,12 g",
+        "12,20 g",
+        "25,14 g",
+        "14,25 g"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Quelle est la configuration du Ca?",
+      "options": [
+        "1s2 2s2 2p6 3s2 3p6 4s2",
+        "1s2 2s1 2p6 3s2 3p6 4s2",
+        "1s2 2s2 2p6 3s1 3p6 4s2",
+        "1s2 2s2 2p6 3s2 3p4 4s2"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Comment appelle-t-on la géométrie moléculaire qui possède 5 nuages électroniques, dont aucun, ne sont des doublets libres? ",
+      "options": [
+        "Trigonale plane",
+        "Bipyramidale à base triangulaire ",
+        "Tétraèdre",
+        "Octaèdre"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Comment appelle-t-on le point où il y a coexistence en équilibre de la température et de la pression, en système fermé, des phases solide-liquide-gazeux? ",
+      "options": [
+        "Point triple",
+        "Polarisation",
+        "Point de fusion",
+        "Point d’ébullition"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    }
+  ],
+  "nbQuestion": 10,
+  "temps": [
+    10,
+    15,
+    20
+  ],
+  "foisReussi": 0,
+  "foisFait": 0
+}

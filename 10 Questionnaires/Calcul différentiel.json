@@ -1,0 +1,123 @@
+{
+  "titre": "Calcul différentiel",
+  "questions": [
+    {
+      "question": "Quelle est l’asymptote horizontale de la fonction f(x) = –7x/(x+5)?",
+      "options": [
+        "Y = 7",
+        "Y = -7",
+        "Y = 5",
+        "Y = -5"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Quel est le taux de variation moyen de f(x) = x^2 – 9 sur l’intervalle [1, 4]?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un ouvrier se trouve au haut d'une échelle de 13 m appuyée contre un mur. Or l'échelle commence à glisser vers le bas de telle sorte que le pied de l'échelle s'éloigne du mur. Déterminez la vitesse à laquelle décroît l’angle situé entre l’échelle et le sol.",
+      "options": [
+        "-1/2 rad/s",
+        "-1/4 rad/s",
+        "-1/8 rad/s",
+        "-1/16 rad/s"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Pour son party de bureau de Noel, Normand doit apporter un cadeau pour un échange. La forme du cadeau en question sera un prisme a base carrée et ii dispose de 54 dm^2. Quelles devraient être les dimensions du cadeau s’il veut impressionner ses collègues en apportant le cadeau le plus volumineux possible (supposons qu'il colle du papier sur toute la surface du cadeau pour l'emballer)?",
+      "options": [
+        "25 dm cube",
+        "26 dm cube",
+        "27 dm cube",
+        "28 dm cube"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    },
+    {
+      "question": "Déterminez l’équation de la tangente à la courbe de f(x) = x^2 + sin(pi/2 x) en x qui est -1.",
+      "options": [
+        "Y = –2x – 2",
+        "Y = 2x + 2",
+        "Y = -2x + 2",
+        "Y = 2x – 2"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Trouvez le maximum absolu de f(x) = x^4 – 2x^3 – 2x^2 + 1 sur [-1, 4].",
+      "options": [
+        "94",
+        "95",
+        "96",
+        "97"
+      ],
+      "response": 3,
+      "foisReussi": 0
+    },
+    {
+      "question": "Résoudre log à base 5 de (12x – 11) = 3.",
+      "options": [
+        "34/3",
+        "33/4",
+        "35/3",
+        "35/4"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Quelle est la continuité de la fonction f(x) = (x^2 – 1) / (x^2 + 2x + 6)?",
+      "options": [
+        "Continue sur tout son domaine",
+        "Sauf en x = 0",
+        "Sauf en x = -7",
+        "Sauf en x = 24"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Évaluez limite quand x tend vers 2 de (log à base 4 de x) / (x-2).",
+      "options": [
+        "1/2",
+        "+ infini",
+        "– infini",
+        "Limite n’existe pas"
+      ],
+      "response": 3,
+      "foisReussi": 0
+    },
+    {
+      "question": "Évaluez limite quand x tend vers 0 de (sec(x) – 1) / x.",
+      "options": [
+        "8",
+        "5",
+        "0",
+        "1"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    }
+  ],
+  "nbQuestion": 10,
+  "temps": [
+    10,
+    15,
+    20
+  ],
+  "foisReussi": 0,
+  "foisFait": 0
+}

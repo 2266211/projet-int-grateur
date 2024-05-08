@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body { padding-top: 70px; }
+        .navbar {
+            background-color: #0d6efd;
+            border: none;
+           
+            color: #ffc107; /* Jaune */
+            text-shadow: 2px 2px 4px #000; /* Black shadow */
+        }
+        
+        .question-section {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            border-radius: 4px;
+            background-color: #f6f6f6;
+        }
+        .answer-btn {
+            text-align: left;
+            margin-top: 10px;
+            width: 100%;
+        }
+      
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">QuizLab Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#question1">Question 1</a></li>
+                    <li><a href="#question2">Question 2</a></li>
+                    <li><a href="#question3">Question 3</a></li>
+                    <!-- ajouter des questions -->
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div id="question1" class="question-section">
+                    <h4>2 + 2?</h4>
+                    <button class="btn btn-default answer-btn">A) 3</button>
+                    <button class="btn btn-default answer-btn">B) 4</button>
+                    <button class="btn btn-default answer-btn">C) 5</button>
+                    <button class="btn btn-default answer-btn">D) 6</button>
+                </div>
+                <div id="question2" class="question-section">
+                    <h4>Capitale de France?</h4>
+                    <button class="btn btn-default answer-btn">A) Paris</button>
+                    <button class="btn btn-default answer-btn">B) Berlin</button>
+                    <button class="btn btn-default answer-btn">C) Madrid</button>
+                    <button class="btn btn-default answer-btn">D) London</button>
+                </div>
+                <div id="question3" class="question-section">
+                    <h4>H20?</h4>
+                    <button class="btn btn-default answer-btn">A) Sel</button>
+                    <button class="btn btn-default answer-btn">B) Sucre</button>
+                    <button class="btn btn-default answer-btn">C) Eau</button>
+                    <button class="btn btn-default answer-btn">D) Acide</button>
+                </div>
+                <!-- Add more questions as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
