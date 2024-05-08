@@ -1,0 +1,112 @@
+{
+  "titre": "Chimie des solutions",
+  "questions": [
+    {
+      "question": "Soit le dosage de 50,0 mL d’une solution de HNo2 0,200 M (un acide faible) par une solution de NaOH 0,500 M (Ka= 4,5 x 10^-4), calculer le pH au point de demi- équivalence. ",
+      "options": [
+        "3,35",
+        "3,82",
+        "3,53",
+        "3,69"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Soit le dosage de 50,0 mL d’une solution de HNo2 0,200 M (un acide faible) par une solution de NaOH 0,500 M (Ka= 4,5 x 10^-4), calculer le pH après ajout de 28.0 mL de NaOH. ",
+      "options": [
+        "12,71",
+        "12,99",
+        "12,04",
+        "13,02"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Une solution de H2S04 à 35% m/m a une masse volumique de 1,27 g/mL. Quel volume de cette solution sera nécessaire pour préparer 250 g d’une solution à 10% m/m?",
+      "options": [
+        "54,1 mL",
+        "56,2 mL",
+        "57,8 mL",
+        "59,1 mL"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un mélange contenant du glucose et du NaCl pèse 41,62 g. Ce mélange est dissout dans 550 g d’eau et on constate alors que la solution gèle à -2,42 degrés Celsius. Combien y a-t-il de g de NaCl dans le mélange?",
+      "options": [
+        "11,11 g",
+        "12,12 g",
+        "13,13 g",
+        "14,14 g"
+      ],
+      "response": 3,
+      "foisReussi": 0
+    },
+    {
+      "question": "Soit la réaction 2A(g) <---> B(g) pour laquelle la pression totale à l’équilibre est de 150 kPa. Quelle est la pression partielle du constituant B à l’équilibre, sachant que Kp = 0,327 kPa?",
+      "options": [
+        "19,9 kPa",
+        "130,06 kPa",
+        "75,04 kPa",
+        "201,11 kPa"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Dans une solution de NH4Cl, le pourcentage d’hydrolyse des ions ammonium est de 0,010%. Si on double le volume de la solution en y ajoutant de l’eau distillée, que devient le pourcentage si Kb de NH3 est de 1,79 x 10^-5?",
+      "options": [
+        "0,014%",
+        "0,017%",
+        "0,020%",
+        "0,023%"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Soit le dosage de 50,0 mL d’une solution de HNo2 0,200 M (un acide faible) par une solution de NaOH 0,500 M (Ka= 4,5 x 10^-4), calculer le pH au point équivalent.",
+      "options": [
+        "8,44",
+        "8,25",
+        "8,78",
+        "8,90"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Une solution de H2SO4 à 35,0% m/m a une masse volumique de 1,27 g/mL. Quel volume de cette solution sera nécessaire pour préparer une solution de 250 mL d’une solution à 0,400 mol/L? ",
+      "options": [
+        "22,1 mL",
+        "22,9 mL",
+        "23,7 mL",
+        "24,6 mL"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Une solution de H2SO4 à 35,0% m/m a une masse volumique de 1,27 g/mL. Quel volume de cette solution sera nécessaire pour préparer une solution de 250g d’une solution dont la molalité est de 0,400mol/kg ? ",
+      "options": [
+        "21,8 mL",
+        "21,2 mL",
+        "24,1 mL",
+        "23,5 mL"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    }
+  ],
+  "nbQuestion": 10,
+  "temps": [
+    10,
+    15,
+    20
+  ],
+  "foisReussi": 0,
+  "foisFait": 0
+}
