@@ -45,7 +45,7 @@
             <div class="col-sm-3">
                 <ul class="nav nav-pills nav-stacked">
                     <% for (let i = 0; i < quiz.questions.length; i++) { %>
-                        <li><a href="#question<%= i + 1 %>">Question <%= i + 1 %></a></li>
+                        <li><a href="/quiz?currentQuestionIndex=<%= i %>">Question <%= i + 1 %></a></li> 
                     <% } %>
                 </ul>
             </div>
@@ -54,16 +54,20 @@
                     <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
                     <h2><%= quiz.questions[currentQuestionIndex].question %></h2>
                     <% for (let i = 0; i < quiz.questions[currentQuestionIndex].options.length; i++) { %>
-                        <input type="radio" name="answer" value="<%= i %>">
-                        <%= quiz.questions[currentQuestionIndex].options[i] %><br>
-                    <% } %>
-                    <% if (currentQuestionIndex < 9) { %>
-                      <button type="submit" onclick="updateFormAction('submit')">Next</button>
+                        <button class="btn btn-default answer-btn" type="submit" name="answer" value="<%= i %>"><%= quiz.questions[currentQuestionIndex].options[i] %></button>
                     <% } %>
                 </form>
-                <form action="/submit-quiz" method="post">
-                    <% if (currentQuestionIndex == 9) { %>
-                      <button type="submit">Submit</button>
+                <form action="/next" method="post"  class="form-inline" style="margin-top: 10px;">
+                    <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
+                    <% if (currentQuestionIndex < 9) { %>
+                      <button type="submit" onclick="updateFormAction('submit')" class="btn btn-primary btn-block">Next</button>
+                    <% } %>
+                </form>
+                <form action="/submit-quiz" method="post" class="form-inline" style="margin-top: 10px;">
+                    <% if (questionRepondu.every(answered => answered)) { %>
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    <% } else { %>
+                        <button type="button" class="btn btn-success btn-block" disabled>Submit</button>
                     <% } %>
                 </form>
             </div>

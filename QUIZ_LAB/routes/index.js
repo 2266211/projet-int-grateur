@@ -9,11 +9,11 @@ const JWT_SECRET = 'hopla';
 require('./config');
 
 //Schéma mongoose importé
-const Question = require('../models/question');
 const User = require('../models/user');
 const Quiz = require('../models/quiz');
 
 //Variable temporaire
+let questionRepondu = [false,false,false,false,false,false,false,false,false,false];
 let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
 let finalScore = 0;
 
@@ -154,18 +154,6 @@ router.post("/connexion", async (req, res) => {
     }
 })
 
-//Vérification du Token
-function verifierToken(req, res, next) {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).redirect('/connexion');
-
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-        if (err) return res.status(403).redirect('/connexion');
-        req.userId = decoded.userId;
-        next();
-    });
-}
-
 //Accès au quiz différent dépendamment du button sélectionner dans la page web
 router.post('/acces-quiz', (req,res)=>  {
     try{
@@ -183,12 +171,12 @@ router.get('/quiz', async (req, res) => {
         const quiz = await Quiz.findOne({Titre : "o"});
         const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
         if(currentQuestionIndex == 0){
-        tempsDebut = Math.floor(Date.now()/1000);
-        console.log(tempsDebut);
+            tempsDebut = Math.floor(Date.now()/1000);
+            console.log(tempsDebut);
         }
         if(quiz != null){
             console.log(currentQuestionIndex);
-            res.render('temp', {quiz, currentQuestionIndex});
+            res.render('quiz', {quiz, currentQuestionIndex, questionRepondu});
         }else{
             console.log('Le quiz est nul');
         }
@@ -199,11 +187,17 @@ router.get('/quiz', async (req, res) => {
     
 });
 
+router.post('/next', async(req, res) => {
+    const currentQuestionIndex = req.body.currentQuestionIndex || 0;
+    const nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
+
+    res.redirect(`/quiz?currentQuestionIndex=${nextQuestionIndex}`);
+  });
+
 
 //Soumission des réponses + actualisation à la prochaine question + calcul de score temporaire
 router.post('/submit-answer', async(req, res) => {
     const currentQuestionIndex = req.body.currentQuestionIndex || 0;
-    const nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
 
     const quiz = await Quiz.findOne({ Titre: "o" });
     const indexBonneReponse = quiz.questions[currentQuestionIndex].response;
@@ -211,6 +205,7 @@ router.post('/submit-answer', async(req, res) => {
 
     if(indexBonneReponse == indexReponseUtilisateur){
         try{
+            questionRepondu[currentQuestionIndex] = true;
             scoreTemp[currentQuestionIndex] = true;
 
             console.log('Bonne reponse. Score updated.')
@@ -219,10 +214,11 @@ router.post('/submit-answer', async(req, res) => {
             console.log(error);
         }
     }else{
+        questionRepondu[currentQuestionIndex] = true;
         console.log('Mauvaise reponse');
         console.log(scoreTemp[currentQuestionIndex]);
     }
-    res.redirect(`/temp?currentQuestionIndex=${nextQuestionIndex}`);
+    res.redirect(`/quiz?currentQuestionIndex=${currentQuestionIndex}`);
   });
 
   //Soumission finale du questionnaire + traitement du score + traitement du temps pris
@@ -274,6 +270,7 @@ router.post('/submit-answer', async(req, res) => {
 
     //Remise à zéro du array de scores temporaires
     for(let i = 0 ; i < scoreTemp.length; i++){
+        questionRepondu[i] = false;
         scoreTemp[i] = false;
     }
     res.redirect('/quiz-result');
