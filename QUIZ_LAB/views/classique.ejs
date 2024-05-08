@@ -203,95 +203,94 @@
             <h4>Voici les tests que vous pouvez faire et dont vous pouvez consulter vos résultats :</h4>
         </div>
         <div class="row">
-            <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Chimie</h2>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="ch" class="collapse">
-                        <h3>Chimie I (générale)</h3>
-                        <img src="/general.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Chimie II (des solutions)</h3>
-                        <img src="/solutions.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Chimie III (organique)</h3>
-                        <img src="/organic.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Mathématiques</h2>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="meth" class="collapse">
-                        <h3>Calcul I (différentiel)</h3>
-                        <img src="/derivee.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Calcul II (intégral)</h3>
-                        <img src="/huves.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Mathématiques discrètes</h3>
-                        <img src="/discrete.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Algèbre linéaire et vectorielle</h3>
-                        <img src="/linear.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+            <form action="/acces-quiz" method="post">
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Chimie</h2>
+                        </div>
+                        <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="ch" class="collapse">
+                            <h3>Chimie I (générale)</h3>
+                            <img src="/general.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie générale">Faire le test</button>
+                            <h4><%user.scores[0]%>/10</h4>
+                            <h3>Chimie II (des solutions)</h3>
+                            <img src="/solutions.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie des solutions">Faire le test</button>
+                            <h4><%user.scores[1]%>/10</h4>
+                            <h3>Chimie III (organique)</h3>
+                            <img src="/organic.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie organique">Faire le test</button>
+                            <h4><%user.scores[2]%>/10</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Physique</h1>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="phy" class="collapse">
-                        <h3>Physique I (mécanique)</h3>
-                        <img src="/mechanics.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Physique II (électrique et magnétique)</h3>
-                        <img src="/elec.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
-                        <h3>Physique III (ondulatoire et moderne)</h3>
-                        <img src="/waves.png">
-                        <button type="button submit">Faire le test</button>
-                        <h4>Insérer la note de l'utilisateur en Express.JS ici!</h4>
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Mathématiques</h2>
+                        </div>
+                        <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="meth" class="collapse">
+                            <h3>Calcul I (différentiel)</h3>
+                            <img src="/derivee.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul différentiel">Faire le test</button>
+                            <h4><%user.scores[3]%>/10</h4>
+                            <h3>Calcul II (intégral)</h3>
+                            <img src="/huves.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul intégral">Faire le test</button>
+                            <h4><%user.scores[4]%>/10</h4>
+                            <h3>Mathématiques discrètes</h3>
+                            <img src="/discrete.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mathématiques discrètes">Faire le test</button>
+                            <h4><%user.scores[5]%>/10</h4>
+                            <h3>Algèbre linéaire et vectorielle</h3>
+                            <img src="/linear.png" class="btn btn-primary d-inline-flex">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Algèbre linéaire et vectorielle">Faire le test</button>
+                            <h4><%user.scores[6]%>/10</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Physique</h1>
+                        </div>
+                        <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="phy" class="collapse">
+                            <h3>Physique I (mécanique)</h3>
+                            <img src="/mechanics.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mécanique">Faire le test</button>
+                            <h4><%user.scores[7]%>/10</h4>
+                            <h3>Physique II (électrique et magnétique)</h3>
+                            <img src="/elec.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Électricité et magnétisme">Faire le test</button>
+                            <h4><%user.scores[8]%>/10</h4>
+                            <h3>Physique III (ondulatoire et moderne)</h3>
+                            <img src="/waves.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Ondes et physique moderne">Faire le test</button>
+                            <h4><%user.scores[9]%>/10</h4>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
-    <!--Add a carousel-->
     <section id="Services" class="container-fluid bg-grey">
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <h2>Autres services</h2>
-            <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
-            <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <h4>Si vous avez des questions,<br><span style="font-style:normal;"></span></h4>
@@ -305,7 +304,6 @@
                     </h4>
                 </div>
             </div>
-            <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>

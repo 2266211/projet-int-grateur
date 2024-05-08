@@ -2,12 +2,23 @@
   "titre": "Chimie des solutions",
   "questions": [
     {
-      "question": "Soit le dosage de 50,0 mL d’une solution de HNo2 0,200 M (un acide faible) par une solution de NaOH 0,500 M (Ka= 4,5 x 10^-4), calculer le pH au point de demi- équivalence. ",
+      "question": "Soit le dosage de 50,0 mL d’une solution de HNO2 0,200 M (un acide faible) par une solution de NaOH 0,500 M (Ka= 4,5 x 10^-4), calculer le pH au point de demi- équivalence. ",
       "options": [
         "3,35",
         "3,82",
         "3,53",
         "3,69"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Comment pourrait-on préparer 100 mL de solution tampon de pH de 9 èa partir de NH3 0,500 M, de NH4Cl 0,500 M et d'eau, sachant que Kb = 1,8 * 10^-5. ",
+      "options": [
+        "35,8 mL de NH3 et 64,2 mL de NH4Cl",
+        "39,8 mL de NH3 et 67,2 mL de NH4Cl",
+        "31,8 mL de NH3 et 60,2 mL de NH4Cl",
+        "37,8 mL de NH3 et 64,2 mL de NH4Cl"
       ],
       "response": 0,
       "foisReussi": 0

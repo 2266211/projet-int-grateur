@@ -71,13 +71,23 @@ router.get('/utilisateur', async (req,res) => {
 })
 
 //Cheminement utilisateur admin
-router.get('/admin', (req,res) => {
-    res.render('admin');
+router.get('/admin', async (req,res) => {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
+
+    res.render('admin', {user : user});
 })
 
 //Cheminement utilisateur classique
-router.get('/classique', (req,res) => {
-    res.render('classique');
+router.get('/classique', async (req,res) => {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
+
+    res.render('classique', {user : user});
 })
 
 //Cheminement rapide pour la déconnexion + clear des cookies
@@ -96,7 +106,7 @@ router.get('/inscription', (req, res) => {
     res.render('inscription', {existingUser : false, nombreErreur : 50});
 });
 
-//Création d'un compte
+//Création d'un compte classique
 router.post("/inscription", async (req, res) => {
     const data = {
         prenom: req.body.prenom,
@@ -123,7 +133,6 @@ router.post("/inscription", async (req, res) => {
         data.motdepasse = hashedPassword; 
 
         const userdata = await User.create(data);
-        console.log(userdata);
         res.render('inscription', {existingUser : false, nombreErreur : 50});
     }
 });
@@ -157,7 +166,7 @@ router.post("/connexion", async (req, res) => {
 //Accès au quiz différent dépendamment du button sélectionner dans la page web
 router.post('/acces-quiz', (req,res)=>  {
     try{
-        testCourant = req.body.nomTest;
+        testCourant = req.body.nomQuiz;
         res.redirect('/quiz');
     }catch(error){
         console.error('Error: ' , error);
@@ -168,11 +177,10 @@ router.post('/acces-quiz', (req,res)=>  {
 //Quiz + début du chrono pour le temps
 router.get('/quiz', async (req, res) => {
     try{
-        const quiz = await Quiz.findOne({Titre : "o"});
+        const quiz = await Quiz.findOne({titre : testCourant});
         const currentQuestionIndex = parseInt(req.query.currentQuestionIndex) || 0;
         if(currentQuestionIndex == 0){
             tempsDebut = Math.floor(Date.now()/1000);
-            console.log(tempsDebut);
         }
         if(quiz != null){
             console.log(currentQuestionIndex);
@@ -199,7 +207,7 @@ router.post('/next', async(req, res) => {
 router.post('/submit-answer', async(req, res) => {
     const currentQuestionIndex = req.body.currentQuestionIndex || 0;
 
-    const quiz = await Quiz.findOne({ Titre: "o" });
+    const quiz = await Quiz.findOne({ titre: testCourant });
     const indexBonneReponse = quiz.questions[currentQuestionIndex].response;
     const indexReponseUtilisateur = parseInt(req.body.answer);
 
@@ -215,6 +223,7 @@ router.post('/submit-answer', async(req, res) => {
         }
     }else{
         questionRepondu[currentQuestionIndex] = true;
+        scoreTemp[currentQuestionIndex] = false;
         console.log('Mauvaise reponse');
         console.log(scoreTemp[currentQuestionIndex]);
     }
@@ -229,7 +238,7 @@ router.post('/submit-answer', async(req, res) => {
         const userId = decoded.userID;
         const user = await User.findById(userId);
 
-        const quiz = await Quiz.findOne({ Titre: "o" });
+        const quiz = await Quiz.findOne({ titre: testCourant });
         quiz.foisFait++;
 
         let scoreFinal = 0;
