@@ -152,6 +152,50 @@
             border-color: transparent;
             color: #fff !important;
         }
+        /* Base styles - these apply when no other media query condition is met (usually your default styling) */
+.panel-default {
+    width: 100%; /* Ensures panel width is responsive */
+    margin-bottom: 20px; /* Space between panels */
+}
+
+
+#stats .table {
+    margin-left: 0; /* Ensures the table aligns directly under the title */
+    width: 45%; /* Table width is always 100% of its container */
+    table-layout: auto; /* Allows table cell widths to adjust naturally */
+}
+#stats h3 {
+    margin-left: 0; /* Ensures no margin on the left side of the title */
+    padding-left: 8px; /* Adds a little padding to match the table's cell padding */
+}
+
+#stats .table th, #stats .table td {
+    text-align: left;
+    padding: 8px; /* Moderate padding for table cells */
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #stats .table th, #stats .table td {
+        padding: 15px; /* Increased padding for larger screens */
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .panel-default {
+        width: auto; /* Optional: Set a max-width if the panel is too wide */
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    #stats .table th, #stats .table td {
+        padding: 20px; /* Larger padding for larger screens */
+    }
+}
+
+
     </style>
 </head>
 
@@ -174,7 +218,7 @@
                     <li><a href="#Questionnaire">QUESTIONNAIRE</a></li>
                     <li><a href="#Services">SERVICES</a></li>
                     <!--Revenir a laccueil ici-->
-                    <li><a href="/">PAGE D'ACCUEIL</a></li>
+                    <li><a href="">PAGE D'ACCUEIL</a></li>
                 </ul>
             </div>
         </div>
@@ -205,72 +249,73 @@
             <h4>Voici les tests que vous pouvez consulter :</h4>
         </div>
         <div class="row">
-            <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Chimie</h2>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="ch" class="collapse">
-                        <h3>Chimie I (générale)</h3>
-                        <img src="/general.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Chimie II (des solutions)</h3>
-                        <img src="/solutions.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Chimie III (organique)</h3>
-                        <img src="/organic.png">
-                        <button type="button submit">Choisir</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Mathématiques</h2>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="meth" class="collapse">
-                        <h3>Calcul I (différentiel)</h3>
-                        <img src="/derivee.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Calcul II (intégral)</h3>
-                        <img src="/huves.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Mathématiques discrètes</h3>
-                        <img src="/discrete.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Algèbre linéaire et vectorielle</h3>
-                        <img src="/linear.png">
-                        <button type="button submit">Choisir</button>
+            <form action="">
+                <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Chimie</h2>
+                        </div>
+                        <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="ch" class="collapse">
+                            <h3>Chimie I (générale)</h3>
+                            <img src="general.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Chimie II (des solutions)</h3>
+                            <img src="solutions.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Chimie III (organique)</h3>
+                            <img src="organic.png">
+                            <button type="submit">Choisir</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Physique</h1>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="phy" class="collapse">
-                        <h3>Physique I (mécanique)</h3>
-                        <img src="/mechanics.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Physique II (électrique et magnétique)</h3>
-                        <img src="/elec.png">
-                        <button type="button submit">Choisir</button>
-                        <h3>Physique III (ondulatoire et moderne)</h3>
-                        <img src="/waves.png">
-                        <button type="button submit">Choisir</button>
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Mathématiques</h2>
+                        </div>
+                        <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="meth" class="collapse">
+                            <h3>Calcul I (différentiel)</h3>
+                            <img src="derivee.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Calcul II (intégral)</h3>
+                            <img src="huves.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Mathématiques discrètes</h3>
+                            <img src="discrete.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Algèbre linéaire et vectorielle</h3>
+                            <img src="linear.png">
+                            <button type="submit">Choisir</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2>Physique</h1>
+                        </div>
+                        <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div id="phy" class="collapse">
+                            <h3>Physique I (mécanique)</h3>
+                            <img src="mechanics.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Physique II (électrique et magnétique)</h3>
+                            <img src="elec.png">
+                            <button type="submit">Choisir</button>
+                            <h3>Physique III (ondulatoire et moderne)</h3>
+                            <img src="waves.png">
+                            <button type="submit">Choisir</button>
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
     <!--Lorsque le bouton Choisir est appuye, ca montre le questionnaire correspondant-->
@@ -317,20 +362,47 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>Statistiques</h2>
-                    </div>
-                    <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#stats">
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div id="stats" class="collapse">
-                        <!--Ici, mettre la bonne reponse a la question-->
-                        <!--Ensuite, mettre les statistiques interessantes (on ne le fera pt pas)-->
+        <div class="col-sm-4">
+                <!--Statistiques Panel-->
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h2>Statistiques</h2>
+                </div>
+                <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#stats">
+                    <i class="bi bi-chevron-up"></i>
+                </button>
+                <div id="stats" class="collapse">
+                    <!--Statistic details-->
+                    <div class="container">
+
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th>Moyenne</th>
+                                    <td id="average">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Médiane</th>
+                                    <td id="median">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Écart-type</th>
+                                    <td id="std_deviation">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Pourcentage de réussite</th>
+                                    <td id="pass_percentage">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Temps moyen</th>
+                                    <td id="average_time">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </section>
     <section id="Services" class="container-fluid bg-grey">
@@ -374,5 +446,4 @@
         </a>
     </footer>
 </body>
-
 </html>

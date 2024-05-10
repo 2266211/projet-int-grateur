@@ -114,10 +114,11 @@
   ],
   "nbQuestion": 10,
   "temps": [
-    10,
-    15,
-    20
+    0
   ],
   "foisReussi": 0,
-  "foisFait": 0
+  "foisFait": 0,
+  "scores": [
+    0
+  ]
 }

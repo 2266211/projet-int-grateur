@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const JWT_SECRET = 'hopla';
-
 require('./config');
 
 //Schéma mongoose importé
@@ -31,7 +30,6 @@ router.use(express.static('public'));
 
 //Encodation de l'url
 router.use(express.urlencoded({extended : false}));
-
 router.use(cookieParser());
 
 //Cheminement de la page d'accueil
@@ -80,12 +78,22 @@ router.get('/admin', async (req,res) => {
     res.render('admin', {user : user});
 })
 
+router.post("/acces-stats", async (req, res) => {
+    const nomQuiz = req.body.quizNom;
+
+    const quizCourant = await Quiz.findOne({titre : nomQuiz});
+});
+
+
+
 //Cheminement utilisateur classique
 router.get('/classique', async (req,res) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
     const userId = decoded.userID;
     const user = await User.findById(userId);
+
+    console.log(user);
 
     res.render('classique', {user : user});
 })
@@ -113,7 +121,7 @@ router.post("/inscription", async (req, res) => {
         nom : req.body.nom,
         adresseCourriel : req.body.adresseCourriel,
         motdepasse : req.body.motdepasse,
-        scores : [0,0,0,0,0,0,,0,0,0,0],
+        scores : [0,0,0,0,0,0,0,0,0,0],
         admin : false
     }
 
@@ -128,12 +136,10 @@ router.post("/inscription", async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.motdepasse, saltRounds);
 
-        data.prenom = req.
-
         data.motdepasse = hashedPassword; 
 
         const userdata = await User.create(data);
-        res.render('inscription', {existingUser : false, nombreErreur : 50});
+        res.render('/', {existingUser : false, nombreErreur : 50});
     }
 });
 
