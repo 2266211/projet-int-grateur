@@ -407,7 +407,13 @@
                                 </tr>
                                 <tr>
                                     <th>Pourcentage de réussite</th>
-                                    <td id="pourR">-</td>
+                                    <% if (quiz != null) { %>
+                                        <td id="pourR"><%=pourR%></td>
+                                    <% } %>
+                                    <% if (quiz == null) { %>
+                                        <td id="pourR">-</td>
+                                    <% } %>
+                    
                                 </tr>
                                 <tr>
                                     <th>Temps moyen</th>

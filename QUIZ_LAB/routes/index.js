@@ -85,13 +85,12 @@ router.post("/acces-stats", async (req, res) => {
     const userId = decoded.userID;
     const user = await User.findById(userId);
 
-    console.log(req.body.quizNom);
+    console.log(req.body.nomQuiz);
 
-    const nomQuiz = req.body.quizNom;
+    const nomQuiz = req.body.nomQuiz;
     console.log(nomQuiz);
     const quizCourant = await Quiz.findOne({titre : nomQuiz});
 
-    console.log(quizCourant);
     console.log(quizCourant.scores);
 
     const moyenne = ss.mean(quizCourant.scores);
@@ -99,7 +98,11 @@ router.post("/acces-stats", async (req, res) => {
     const ecartType = ss.standardDeviation(quizCourant.scores);
     const tempsMoyen = ss.mean(quizCourant.temps);
 
-    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen});
+
+    const pourR = (quizCourant.foisReussi/quizCourant.foisFait)*100;
+
+
+    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR});
 });
 
 
@@ -263,20 +266,20 @@ router.post('/submit-answer', async(req, res) => {
         const user = await User.findById(userId);
 
         const quiz = await Quiz.findOne({ titre: testCourant });
+
         quiz.foisFait++;
 
         let scoreFinal = 0;
 
+
         for(let i = 0 ; i < 10 ; i++){
             if(scoreTemp[i]){
                 scoreFinal++;
-            }
-            if(scoreTemp[i]){
                 quiz.questions[i].foisReussi++;
             }
         }
 
-        if(scoreFinal > 5){
+        if(scoreFinal > 6){
             quiz.foisReussi++;
         }
 
@@ -284,7 +287,18 @@ router.post('/submit-answer', async(req, res) => {
 
         tempsPris = (Math.floor(Date.now()/1000)) - (tempsDebut);
         console.log(tempsPris);
-        quiz.temps.push(tempsPris);
+
+        if(quiz.temps[0] == 0){
+            quiz.temps[0] = tempsPris;
+        }else{
+            quiz.temps.push(tempsPris);
+        }
+
+        if(quiz.scores[0] && quiz.length == 0){
+            quiz.scores[0] = scoreFinal;
+        }else{
+            quiz.scores.push(scoreFinal);
+        }
 
         await quiz.save();
 
@@ -295,7 +309,7 @@ router.post('/submit-answer', async(req, res) => {
             await user.save();
             console.log('Score Utilisateur mise à jour.');
         } else {
-            console.log('Score temporaire est plus bas.');
+            console.log('Score temporaire est plus bas ou égale à son meilleur score.');
         }
     } catch (error) {
         console.error(error);
