@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const JWT_SECRET = 'hopla';
+const ss =require('simple-statistics');
 require('./config');
 
 //Schéma mongoose importé
@@ -75,13 +76,30 @@ router.get('/admin', async (req,res) => {
     const userId = decoded.userID;
     const user = await User.findById(userId);
 
-    res.render('admin', {user : user});
+    res.render('admin', {user : user, quiz : null});
 })
 
 router.post("/acces-stats", async (req, res) => {
-    const nomQuiz = req.body.quizNom;
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
 
+    console.log(req.body.quizNom);
+
+    const nomQuiz = req.body.quizNom;
+    console.log(nomQuiz);
     const quizCourant = await Quiz.findOne({titre : nomQuiz});
+
+    console.log(quizCourant);
+    console.log(quizCourant.scores);
+
+    const moyenne = ss.mean(quizCourant.scores);
+    const mediane = ss.median(quizCourant.scores);
+    const ecartType = ss.standardDeviation(quizCourant.scores);
+    const tempsMoyen = ss.mean(quizCourant.temps);
+
+    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen});
 });
 
 

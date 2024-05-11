@@ -249,8 +249,8 @@
             <h4>Voici les tests que vous pouvez consulter :</h4>
         </div>
         <div class="row">
-            <form action="">
-                <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
+            <form action="/acces-stats" method="post">
+                <div class="col-sm-4">
                     <div class="panel panel-default text-center">
                         <div class="panel-heading">
                             <h2>Chimie</h2>
@@ -260,14 +260,14 @@
                         </button>
                         <div id="ch" class="collapse">
                             <h3>Chimie I (générale)</h3>
-                            <img src="general.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/general.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie générale">Choisir</button>
                             <h3>Chimie II (des solutions)</h3>
-                            <img src="solutions.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/solutions.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie des solutions">Choisir</button>
                             <h3>Chimie III (organique)</h3>
-                            <img src="organic.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/organic.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie organique">Choisir</button>
                         </div>
                     </div>
                 </div>
@@ -281,17 +281,17 @@
                         </button>
                         <div id="meth" class="collapse">
                             <h3>Calcul I (différentiel)</h3>
-                            <img src="derivee.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/derivee.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul différentiel">Choisir</button>
                             <h3>Calcul II (intégral)</h3>
-                            <img src="huves.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/huves.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul intégral">Choisir</button>
                             <h3>Mathématiques discrètes</h3>
-                            <img src="discrete.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/discrete.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mathématiques discrètes">Choisir</button>
                             <h3>Algèbre linéaire et vectorielle</h3>
-                            <img src="linear.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/linear.png" class="btn btn-primary d-inline-flex">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Algèbre linéaire et vectorielle">Choisir</button>
                         </div>
                     </div>
                 </div>
@@ -305,17 +305,18 @@
                         </button>
                         <div id="phy" class="collapse">
                             <h3>Physique I (mécanique)</h3>
-                            <img src="mechanics.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/mechanics.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mécanique">Choisir</button>
                             <h3>Physique II (électrique et magnétique)</h3>
-                            <img src="elec.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/elec.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Électricité et magnétisme">Choisir</button>
                             <h3>Physique III (ondulatoire et moderne)</h3>
-                            <img src="waves.png">
-                            <button type="submit">Choisir</button>
+                            <img src="/waves.png">
+                            <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Ondes et physique moderne">Choisir</button>
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
     </section>
     <!--Lorsque le bouton Choisir est appuye, ca montre le questionnaire correspondant-->
@@ -356,14 +357,16 @@
                         <i class="bi bi-chevron-up"></i>
                     </button>
                     <div id="question" class="collapse">
-                        <!--Ici, mettre le titre de la question avec un plus gros heading-->
-                        <!--Ensuite, mettre les choix de reponses-->
-                        <!--Tu pourrais, litteralement, mettre le meme format que linterface de test-->
+                        <% if (quiz != null) { %>
+                            <h2><%=quiz.titre%></h2>
+                        <% } %>
+                        <% if (quiz == null) { %>
+                            <h2>Choisir un quiz</h2>
+                        <% } %>
                     </div>
                 </div>
             </div>
         <div class="col-sm-4">
-                <!--Statistiques Panel-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h2>Statistiques</h2>
@@ -372,37 +375,54 @@
                     <i class="bi bi-chevron-up"></i>
                 </button>
                 <div id="stats" class="collapse">
-                    <!--Statistic details-->
                     <div class="container">
-
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Moyenne</th>
-                                    <td id="average">5</td>
+                                    <% if (quiz != null) { %>
+                                        <td id="moyenne"><%=moyenne%></td>
+                                    <% } %>
+                                    <% if (quiz == null) { %>
+                                        <td id="moyenne">-</td>
+                                    <% } %>
                                 </tr>
                                 <tr>
                                     <th>Médiane</th>
-                                    <td id="median">-</td>
+                                    <% if (quiz != null) { %>
+                                        <td id="mediane"><%=mediane%></td>
+                                    <% } %>
+                                    <% if (quiz == null) { %>
+                                        <td id="mediane">-</td>
+                                    <% } %>
                                 </tr>
                                 <tr>
                                     <th>Écart-type</th>
-                                    <td id="std_deviation">-</td>
+                                    <% if (quiz != null) { %>
+                                        <td id="ecartType"><%=ecartType%></td>
+                                    <% } %>
+                                    <% if (quiz == null) { %>
+                                        <td id="ecartType">-</td>
+                                    <% } %>
                                 </tr>
                                 <tr>
                                     <th>Pourcentage de réussite</th>
-                                    <td id="pass_percentage">-</td>
+                                    <td id="pourR">-</td>
                                 </tr>
                                 <tr>
                                     <th>Temps moyen</th>
-                                    <td id="average_time">-</td>
+                                    <% if (quiz != null) { %>
+                                        <td id="tempsMoyen"><%=tempsMoyen%></td>
+                                    <% } %>
+                                    <% if (quiz == null) { %>
+                                        <td id="tempsMoyen">-</td>
+                                    <% } %>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </form>
         </div>
     </section>
     <section id="Services" class="container-fluid bg-grey">
