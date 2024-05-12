@@ -97,12 +97,41 @@ router.post("/acces-stats", async (req, res) => {
     const mediane = ss.median(quizCourant.scores);
     const ecartType = ss.standardDeviation(quizCourant.scores);
     const tempsMoyen = ss.mean(quizCourant.temps);
-
-
     const pourR = (quizCourant.foisReussi/quizCourant.foisFait)*100;
 
+    if(req.body.indexQ == null){
+        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : null});
+    }else{
+        const indexQ = req.body.indexQ;
+        const pourRQ = (quizCourant.questions[indexQ].foisReussi)/(quizCourant.foisFait) * 100;
+        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : pourRQ, indexQ : indexQ});
+    }
+    
+});
 
-    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR});
+router.post("/acces-stats-q", async (req, res) => {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
+
+    const nomQuiz = req.body.nomQuiz;
+    console.log(nomQuiz);
+    const quizCourant = await Quiz.findOne({titre : nomQuiz});
+
+    console.log(quizCourant.scores);
+
+    const moyenne = ss.mean(quizCourant.scores);
+    const mediane = ss.median(quizCourant.scores);
+    const ecartType = ss.standardDeviation(quizCourant.scores);
+    const tempsMoyen = ss.mean(quizCourant.temps);
+    const pourR = (quizCourant.foisReussi/quizCourant.foisFait)*100;
+
+    const indexQ = req.body.indexQ;
+
+    const pourRQ = (quizCourant.questions[indexQ].foisReussi)/(quizCourant.foisFait) * 100;
+
+    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : pourRQ});
 });
 
 

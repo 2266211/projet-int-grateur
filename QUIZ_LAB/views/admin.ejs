@@ -334,18 +334,23 @@
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#questions">
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <div id="questions" class="collapse">
-                        <button type="button submit">Question 1</button>
-                        <button type="button submit">Question 2</button>
-                        <button type="button submit">Question 3</button>
-                        <button type="button submit">Question 4</button>
-                        <button type="button submit">Question 5</button>
-                        <button type="button submit">Question 6</button>
-                        <button type="button submit">Question 7</button>
-                        <button type="button submit">Question 8</button>
-                        <button type="button submit">Question 9</button>
-                        <button type="button submit">Question 10</button>
-                    </div>
+                    <form action="/acces-stats" method="post">
+                        <% if(quiz != null) { %>
+                            <input type="hidden" name="nomQuiz" value="<%=quiz.titre%>">
+                        <% } %>
+                        <div id="questions" class="collapse">
+                            <button type="submit" name="indexQ" value="0">Question 1</button>
+                            <button type="submit" name="indexQ" value="1">Question 2</button>
+                            <button type="submit" name="indexQ" value="2">Question 3</button>
+                            <button type="submit" name="indexQ" value="3">Question 4</button>
+                            <button type="submit" name="indexQ" value="4">Question 5</button>
+                            <button type="submit" name="indexQ" value="5">Question 6</button>
+                            <button type="submit" name="indexQ" value="6">Question 7</button>
+                            <button type="submit" name="indexQ" value="7">Question 8</button>
+                            <button type="submit" name="indexQ" value="8">Question 9</button>
+                            <button type="submit" name="indexQ" value="9">Question 10</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -359,9 +364,15 @@
                     <div id="question" class="collapse">
                         <% if (quiz != null) { %>
                             <h2><%=quiz.titre%></h2>
+                            <% if (pourRQ != null) { %>
+                                <h3>Question <%=(parseInt(indexQ)+1)%></h3>
+                                <h4>Pourcentage de réussite</h4>
+                                <h2><%=pourRQ%></h2>
+                            <% } %>
+                            <h3></h3>
                         <% } %>
                         <% if (quiz == null) { %>
-                            <h2>Choisir un quiz</h2>
+                            <h2>Choisir une question</h2>
                         <% } %>
                     </div>
                 </div>
