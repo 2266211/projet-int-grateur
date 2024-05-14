@@ -86,28 +86,35 @@
     <section id="bigBox" class="container-fluid bg-grey">
         <form action="/inscription" method="post" >
             <fieldset>
+            <!--Barres info, on ecrit notre nom, prenom, adresse courriel et mot de passe pour une inscription (nouveau compte)-->
             <div class="col-sm-8">
                 <legend>Inscription</legend>
+                <!--Prenom-->
                 <div>
                     <label for="inputPrenom" class="text">Prénom</label>
                     <input class="form-control" type="text" id="inputPrenom" aria-describedby="Prénom" placeholder="Prénom" name = "prenom" required>
                 </div>
+                <!--Nom-->
                 <div>
                     <label for="inputNom" class="text">Nom</label>
                     <input class="form-control" type="text" id="inputNom" aria-describedby="Nom" placeholder="Nom" name = "nom" required>
                 </div>
+                <!--Adresse courriel-->
                 <div>
                     <label for="inputEmail" class="text">Email</label>
                     <input class="form-control" type="email" id="inputEmail" aria-describedby="Adresse Courriel" placeholder="Adresse Courriel" name = "adresseCourriel" required>
                 </div>
+                <!--Mot de passe-->
                 <div>
                     <label for="inputMotdepasse" class="text">Mot de passe</label>
                     <input class="form-control" type="password" id="inputMotdepasse" aria-describedby="Mot de passe" placeholder="Mot de Passe" name = "motdepasse" required>
                 </div>
                 <button class="btn btn-default" type="submit">S'inscrire</button>
+                <!--Un utilisateur existe deja, on refuse inscription-->
                 <% if (nombreErreur == 1) { %>
                     <small id="messageErreur" class="form-text text-danger">Un utilisateur avec cette adresse courriel existe déjà.</small>
                 <% } %>
+                <!--Le mot de passe ne respecte pas le format-->
                 <% if (nombreErreur == 0) { %>
                     <small id="messageErreur" class="form-text text-danger">Le mot de passe est trop court. Il doit comporter au minimum 6 caractères.</small>
                 <% } %>

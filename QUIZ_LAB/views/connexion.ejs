@@ -84,6 +84,7 @@
             <fieldset>
             <div class="col-sm-8">
                 <legend>Connexion</legend>
+                <!--Barres de texte a ecrire, soit adresse courriel et mot de passe-->
                 <div>
                     <label for="inputEmail" class="text">Email</label>
                     <input class="form-control" type="email" id="inputEmail" aria-describedby="Adresse Courriel" placeholder="Adresse Courriel" name = "adresseCourriel" required>
@@ -93,9 +94,11 @@
                     <input class="form-control" type="password" id="inputMotdepasse" aria-describedby="Mot de passe" placeholder="Mot de Passe" name = "motdepasse" required>
                 </div>
                 <button class="btn btn-default" type="submit">Connecter</button>
+                <!--Si adresse courriel pas valide-->
                 <% if (nombreErreur == 1) { %>
                     <small id="messageErreur" class="form-text text-danger">L'adresse courriel n'existe pas. Veuillez utiliser la page d'inscription.</small>
                 <% } %>
+                <!--Si le mot de passe tape est pas correspondant au compte-->
                 <% if (nombreErreur == 0) { %>
                     <small id="messageErreur" class="form-text text-danger">Le mot de passe ne concorde pas avec l'adresse courriel donnée.</small>
                 <% } %>
