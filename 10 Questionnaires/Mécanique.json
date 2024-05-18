@@ -1,0 +1,124 @@
+{
+  "titre": "Mécanique",
+  "questions": [
+    {
+      "question": "Du toit d’un édifice de 12,0 mètres, on lance vers le haut une balle avec une vitesse de 4,00 m/s. Combien de temps la balle prendra-t-elle pour atteindre le sol?",
+      "options": [
+        "2,03 s",
+        "1,62 s",
+        "0,41 s",
+        "2,99 s"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un automobiliste utilise une bretelle en quart de cercle pour entrer sur l’autoroute. Le module de sa vitesse, du début de la bretelle à sa fin, augmente régulièrement de 12,0 m/s à 25,0 m/s pendant 5,20 secondes. Quelle est l’orientation de l’accélération de l’automobiliste au centre du virage?",
+      "options": [
+        "74,9 degrés",
+        "58,1 degrés",
+        "68,3 degrés",
+        "88,2 degrés"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un bloc A, de forme rectangulaire, mesure 40 cm de longueur et possède une masse de 1,6 kg. Il est placé sur un plan incliné à un angle de 30 degrés par rapport à l’horizontale. Sur le bloc A, on place un bloc B de forme cubique qui mesure 10 cm de longueur et dont la masse est de 0,4 kg. On relie les blocs par une corde qui passe sur une poulie idéale et on les lâche : on observe que le bloc A glisse vers le bas du plan incliné. Si le coefficient de frottement cinétique entre toutes les surfaces est de 0,1, quel est le temps pendant lequel le bloc B demeure entièrement supporté par le bloc A?",
+      "options": [
+        "1,997 s",
+        "0,414 s",
+        "1,238 s",
+        "0,852 s"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Certains virages sont inclinés dans le mauvais sens, c’est-à-dire que l’inclinaison produit une force ayant une composante vers l’extérieur du virage. L’auto se déplace à une vitesse dont le module est constant, le long d’un arc de cercle horizontal. Le coefficient de frottement statique est de 0,250 et le coefficient de frottement cinétique est de 0,150. Le plan a un rayon de 120 m et est incliné selon un angle de 7,00 degrés. Quel est le module de la vitesse maximale pour que les pneus ne glissent pas?",
+      "options": [
+        "13 m/s",
+        "12 m/s",
+        "11 m/s",
+        "10 m/s"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un bloc entraîné par la rotation d’un disque. Un disque de métal de 50 cm de rayon tourne autour d’un axe vertical à 40 tours par minutes. Un petit bloc est situé à mi-chemin entre le centre et le bord du disque et il tourne avec le disque sans glisser. Quel est le coefficient de frottement statique minimal qui doit exister entre le bloc et le disque pour rendre ce mouvement possible?",
+      "options": [
+        "0,45",
+        "0,55",
+        "0,65",
+        "0,75"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "Un enfant tire son traîneau le long d’une surface horizontale à l’aide d’une corde horizontale. Il a placé un bloc de neige de 1,50 kg dans le traîneau. La masse du traîneau est de 1,00 kg. Le coefficient de frottement statique entre le traîneau et le bloc de neige est de 0,20, et le coefficient de frottement cinétique entre le traîneau et le sol est de 0,10. Lorsque l’enfant tire le traîneau, le bloc de neige est sur le point de glisser dans le traîneau. Quelle est la tension dans la corde ?",
+      "options": [
+        "6,9 N",
+        "5,7 N",
+        "7,4 N",
+        "8,7 N"
+      ],
+      "response": 2,
+      "foisReussi": 0
+    },
+    {
+      "question": "Avec une balle et une corde de 0,5 m, on crée un pendule que l’on accroche au plafond. On fait osciller le pendule et on observe que le module de la vitesse de la balle est égal à 1,5 m/s au point le plus bas de sa trajectoire. Aux deux extrémités de l’oscillation, quel est l’angle que fait la corde avec la verticale?",
+      "options": [
+        "51,07 degrés",
+        "39,65 degrés",
+        "45,09 degrés",
+        "36,14 degrés"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    },
+    {
+      "question": "On suppose un bloc de 0,3 kg et que sa vitesse initiale est nulle lorsque le ressort est comprimé de 20 cm (le bloc est attaché au ressort). Quel est le module de la vitesse du bloc lorsque le ressort est étiré de 10 cm, si la constante de rappel du ressort est de 40 N/m?",
+      "options": [
+        "5 m/s",
+        "4 m/s",
+        "3 m/s",
+        "2 m/s"
+      ],
+      "response": 3,
+      "foisReussi": 0
+    },
+    {
+      "question": "Dans un billard électronique, un piston à ressort est utilisé pour lancer une bille d’acier de 2,50 cm de diamètre dont la masse est de 64,4, kg, le long d’un plan incliné de 8 degrés. Le ressort a une constante de rappel de 90,5 N/m. Il est comprimé de 4 cm durant le lancer. Après celui-ci, la bille roule vers le haut sans glisser et le piston reste immobile. Quel est le module de la vitesse de la ville après que celle-ci a parcouru une distance de 40 cm après avoir perdu contact avec le piston?",
+      "options": [
+        "0,865 m/s",
+        "1,244 m/s",
+        "0,549 m/s",
+        "1,111 m/s"
+      ],
+      "response": 0,
+      "foisReussi": 0
+    },
+    {
+      "question": "À l’occasion d’un essai balistique, une balle de fusil de 20 g est tirée horizontalement à 600 m/s sur un bloc de bois de 2,4 kg qui est immobile sur une surface horizontale sans frottement. La balle traverse le bloc et en sort à 350 m/s. Quel est le module de la vitesse du bloc après que la balle l’a traversé?",
+      "options": [
+        "2,51 m/s",
+        "2,08 m/s",
+        "1,99 m/s",
+        "2,37 m/s"
+      ],
+      "response": 1,
+      "foisReussi": 0
+    }
+  ],
+  "nbQuestion": 10,
+  "temps": [
+    0
+  ],
+  "foisReussi": 0,
+  "foisFait": 0,
+  "scores": [
+    0
+  ]
+}
