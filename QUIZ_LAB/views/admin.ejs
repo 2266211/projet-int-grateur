@@ -5,33 +5,29 @@
     <title>QuizLab</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Add Bootstrap CDN and a link to jQuery-->
+    <!--Ajout du Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!--Add Bootstrap CDN and a link to jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         .jumbotron {
+            /*Fond bleu*/
             background-color: #0d6efd;
-            /*Blue*/
+            /*Couleur jaune*/
             color: #ffc107;
-            /*Lets make the jumbotron look good by adding some padding:*/
             padding: 100px 25px;
         }
 
         h1 {
-            /*font-family: "Sofia", sans-serif;*/
             text-shadow: 3px 3px 3px #090404;
         }
 
-        /*.bg-grey - adds a gray background color*/
         .bg-grey {
             background-color: #f6f6f6;
-            /* Grey */
         }
 
-        /*Align the description of the website*/
+        /*CSS de la description*/
         .col-sm-8 {
             text-align: center;
         }
@@ -44,7 +40,7 @@
             padding: 60px 50px
         }
 
-        /*Set the size and color of the logos (book)*/
+        /*CSS du logo*/
         .logo {
             color: #0d6efd;
             font-size: 100px;
@@ -57,7 +53,7 @@
             width: 150px;
         }
 
-        /*Style the panels*/
+        /*CSS des panels*/
         .panel {
             border: 1px solid #0d6efd;
             border-radius: 0;
@@ -75,7 +71,7 @@
             border-bottom-right-radius: 0px;
         }
 
-        /* Bouton fleche */
+        /* Bouton flèche */
         .btn-fleche i {
             transition: rotate 250ms ease-in-out;
             display: block;
@@ -96,14 +92,14 @@
             padding: 25px;
         }
 
-        /*Style the footer*/
+        /*CSS du footer*/
         footer .glyphicon {
             font-size: 20px;
             margin-bottom: 20px;
             color: #0d6efd;
         }
 
-        /*Style the carousel in CSS*/
+        /*CSS du caroussel*/
         .carousel-control.right,
         .carousel-control.left {
             background-image: none;
@@ -125,7 +121,7 @@
             font-style: italic;
             margin: 70px 0;
         }
-        /*Style the navbar*/
+        /*CSS de la navbar*/
         .navbar {
             margin-bottom: 0;
             background-color: #0d6efd;
@@ -152,46 +148,42 @@
             border-color: transparent;
             color: #fff !important;
         }
-        /* Base styles - these apply when no other media query condition is met (usually your default styling) */
 .panel-default {
-    width: 100%; /* Ensures panel width is responsive */
-    margin-bottom: 20px; /* Space between panels */
+    width: 100%; /* Responsivité de la largeur */
+    margin-bottom: 20px; /* Écart entre les panels */
 }
 
-
+/*CSS des statistiques*/
 #stats .table {
-    margin-left: 0; /* Ensures the table aligns directly under the title */
-    width: 45%; /* Table width is always 100% of its container */
-    table-layout: auto; /* Allows table cell widths to adjust naturally */
+    margin-left: 0;
+    width: 45%;
+    table-layout: auto;
 }
 #stats h3 {
-    margin-left: 0; /* Ensures no margin on the left side of the title */
-    padding-left: 8px; /* Adds a little padding to match the table's cell padding */
+    margin-left: 0;
+    padding-left: 8px;
 }
 
 #stats .table th, #stats .table td {
     text-align: left;
-    padding: 8px; /* Moderate padding for table cells */
+    padding: 8px;
 }
 
-/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     #stats .table th, #stats .table td {
-        padding: 15px; /* Increased padding for larger screens */
+        padding: 15px;
     }
 }
 
-/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .panel-default {
-        width: auto; /* Optional: Set a max-width if the panel is too wide */
+        width: auto;
     }
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     #stats .table th, #stats .table td {
-        padding: 20px; /* Larger padding for larger screens */
+        padding: 20px;
     }
 }
 
@@ -200,7 +192,6 @@
 </head>
 
 <body>
-    <!--Add a navbar at the top of the page that collapses on smaller screens:-->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -209,7 +200,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">Logo</a>
+                <a class="navbar-brand" href="#myPage">QuizLab</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -217,32 +208,26 @@
                     <li><a href="#Matières">EXAMENS</a></li>
                     <li><a href="#Questionnaire">QUESTIONNAIRE</a></li>
                     <li><a href="#Services">SERVICES</a></li>
-                    <!--Revenir a laccueil ici-->
-                    <li><a href="">PAGE D'ACCUEIL</a></li>
+                    <li><a href="/">PAGE D'ACCUEIL</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!--Put HTML elements inside a .jumbotron-->
-    <section class="jumbotron text-center"> <!--Add the .text-center class to center the text inside-->
+    <section class="jumbotron text-center">
         <h1>QuizLab</h1>
         <p>Séries de tests pour les cégepiens</p>
     </section>
-    <!--Add a container (.container-fluid)-->
     <section id="À propos" class="container-fluid bg-grey">
-        <!--Separate the icon and the "about text" by creating two columns (.col-sm-8 and .col-sm-4)-->
         <div class="row">
             <div class="col-sm-8">
                 <h2>Bienvenue sur l'interface administrateur!</h2>
                 <p>Vous pouvez consulter les tests ainsi que les statistiques de chacun.</p>
             </div>
             <div class="col-sm-4">
-                <!--Logo lit-->
                 <span class="glyphicon glyphicon-list-alt logo"></span>
             </div>
         </div>
     </section>
-    <!--Add Matières container-->
     <section id="Matières" class="container-fluid">
         <div class="text-center">
             <h2>Tests</h2>
@@ -258,7 +243,6 @@
                         <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
                             <i class="bi bi-chevron-up"></i>
                         </button>
-                        <!--Voir les quiz-->
                         <div id="ch" class="collapse">
                             <h3>Chimie I (générale)</h3>
                             <img src="/general.png">
@@ -280,7 +264,6 @@
                         <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
                             <i class="bi bi-chevron-up"></i>
                         </button>
-                        <!--Voir les quiz-->
                         <div id="meth" class="collapse">
                             <h3>Calcul I (différentiel)</h3>
                             <img src="/derivee.png">
@@ -305,7 +288,6 @@
                         <button type="button" class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
                             <i class="bi bi-chevron-up"></i>
                         </button>
-                        <!--Voir les quiz-->
                         <div id="phy" class="collapse">
                             <h3>Physique I (mécanique)</h3>
                             <img src="/mechanics.png">
@@ -322,7 +304,6 @@
             </form>
         </div>
     </section>
-    <!--Lorsque le bouton Choisir est appuye, ca montre le questionnaire correspondant-->
     <section id="Questionnaire" class="container-fluid">
         <div class="text-center">
             <h2>Questionnaire</h2>
@@ -342,16 +323,16 @@
                             <input type="hidden" name="nomQuiz" value="<%=quiz.titre%>">
                         <% } %>
                         <div id="questions" class="collapse">
-                            <button type="submit" name="indexQ" value="0">Question 1</button>
-                            <button type="submit" name="indexQ" value="1">Question 2</button>
-                            <button type="submit" name="indexQ" value="2">Question 3</button>
-                            <button type="submit" name="indexQ" value="3">Question 4</button>
-                            <button type="submit" name="indexQ" value="4">Question 5</button>
-                            <button type="submit" name="indexQ" value="5">Question 6</button>
-                            <button type="submit" name="indexQ" value="6">Question 7</button>
-                            <button type="submit" name="indexQ" value="7">Question 8</button>
-                            <button type="submit" name="indexQ" value="8">Question 9</button>
-                            <button type="submit" name="indexQ" value="9">Question 10</button>
+                            <button type="submit" name="indexQ" value="0" class="btn btn-primary btn-block">Question 1</button>
+                            <button type="submit" name="indexQ" value="1" class="btn btn-primary btn-block">Question 2</button>
+                            <button type="submit" name="indexQ" value="2" class="btn btn-primary btn-block">Question 3</button>
+                            <button type="submit" name="indexQ" value="3" class="btn btn-primary btn-block">Question 4</button>
+                            <button type="submit" name="indexQ" value="4" class="btn btn-primary btn-block">Question 5</button>
+                            <button type="submit" name="indexQ" value="5" class="btn btn-primary btn-block">Question 6</button>
+                            <button type="submit" name="indexQ" value="6" class="btn btn-primary btn-block">Question 7</button>
+                            <button type="submit" name="indexQ" value="7" class="btn btn-primary btn-block">Question 8</button>
+                            <button type="submit" name="indexQ" value="8" class="btn btn-primary btn-block">Question 9</button>
+                            <button type="submit" name="indexQ" value="9" class="btn btn-primary btn-block">Question 10</button>
                         </div>
                     </form>
                 </div>
@@ -359,7 +340,12 @@
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <h2>Question</h2>
+                        <% if (quiz != null) { %>
+                            <h2>Statistiques des questions</h2>
+                        <% } %>
+                        <% if (quiz == null) { %>
+                            <h2>Choisir un questionnaire</h2>
+                        <% } %>
                     </div>
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#question">
                         <i class="bi bi-chevron-up"></i>
@@ -369,8 +355,9 @@
                             <h2><%=quiz.titre%></h2>
                             <% if (pourRQ != null) { %>
                                 <h3>Question <%=(parseInt(indexQ)+1)%></h3>
+                                <h5><%=quiz.questions[indexQ].question%></h5>
                                 <h4>Pourcentage de réussite</h4>
-                                <h2><%=pourRQ%></h2>
+                                <h2><%=pourRQ%> %</h2>
                             <% } %>
                             <h3></h3>
                         <% } %>
@@ -393,7 +380,6 @@
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <!--Statistiques interessantes-->
                                     <th>Moyenne</th>
                                     <% if (quiz != null) { %>
                                         <td id="moyenne"><%=moyenne%></td>
@@ -414,7 +400,7 @@
                                 <tr>
                                     <th>Écart-type</th>
                                     <% if (quiz != null) { %>
-                                        <td id="ecartType"><%=ecartType%></td>
+                                        <td id="ecartType"><%=ecartType%> %</td>
                                     <% } %>
                                     <% if (quiz == null) { %>
                                         <td id="ecartType">-</td>
@@ -423,7 +409,7 @@
                                 <tr>
                                     <th>Pourcentage de réussite</th>
                                     <% if (quiz != null) { %>
-                                        <td id="pourR"><%=pourR%></td>
+                                        <td id="pourR"><%=pourR%> %</td>
                                     <% } %>
                                     <% if (quiz == null) { %>
                                         <td id="pourR">-</td>
@@ -449,13 +435,11 @@
     <section id="Services" class="container-fluid bg-grey">
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <h2>Autres services</h2>
-            <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
-            <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <h4>Si vous avez des questions,<br><span style="font-style:normal;"></span></h4>
@@ -469,7 +453,6 @@
                     </h4>
                 </div>
             </div>
-            <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -480,7 +463,6 @@
             </a>
         </div>
     </section>
-    <!--Add an "Up Arrow" icon to the footer, which will take the user to the top of the page when clicked on-->
     <footer class="container-fluid text-center">
         <a href="#myPage" title="To Top">
             <span class="glyphicon glyphicon-chevron-up"></span>

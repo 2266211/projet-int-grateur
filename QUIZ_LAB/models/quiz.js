@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Schéma d'un questionnaire
 const quizSchema = new mongoose.Schema({
   titre: { type: String, required: true },
   questions: [{

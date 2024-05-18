@@ -5,33 +5,30 @@
     <title>QuizLab</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Add Bootstrap CDN and a link to jQuery-->
+    <!--Ajout de Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!--Add Bootstrap CDN and a link to jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         .jumbotron {
+            /*Couleur de fond bleu*/
             background-color: #0d6efd;
-            /*Blue*/
+            /*Couleur jaune*/
             color: #ffc107;
-            /*Lets make the jumbotron look good by adding some padding:*/
+            /*Ajout de padding*/
             padding: 100px 25px;
         }
 
         h1 {
-            /*font-family: "Sofia", sans-serif;*/
             text-shadow: 3px 3px 3px #090404;
         }
 
-        /*.bg-grey - adds a gray background color*/
         .bg-grey {
             background-color: #f6f6f6;
-            /* Grey */
         }
 
-        /*Align the description of the website*/
+        /*CSS de la description du projet*/
         .col-sm-8 {
             text-align: center;
         }
@@ -44,13 +41,12 @@
             padding: 60px 50px
         }
 
-        /*Set the size and color of the logos (book)*/
+        /*Taille et couleur du logo*/
         .logo {
             color: #0d6efd;
             font-size: 200px;
         }
 
-        /*Styliser l'image en lui mettant un contour*/
         img {
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -58,14 +54,13 @@
             width: 150px;
         }
 
-        /*Style the panels*/
+        /*CSS des panels*/
         .panel {
             border: 1px solid #0d6efd;
             border-radius: 0;
             transition: box-shadow 0.5s;
         }
-        
-        /*Styliser les panneaux des matières pour les mettre en bleu*/
+
         .panel-heading {
             color: #fff !important;
             background-color: #0d6efd !important;
@@ -77,7 +72,7 @@
             border-bottom-right-radius: 0px;
         }
 
-        /* Bouton fleche */
+        /* Bouton flèche */
         .btn-fleche i {
             transition: rotate 250ms ease-in-out;
             display: block;
@@ -94,7 +89,7 @@
             padding-bottom: 20px;
         }
 
-        /*Style the navbar*/
+        /*CSS de la navbar*/
         .navbar {
             margin-bottom: 0;
             background-color: #0d6efd;
@@ -122,14 +117,14 @@
             color: #fff !important;
         }
 
-        /*Style the footer*/
+        /*CSS du footer*/
         footer .glyphicon {
             font-size: 20px;
             margin-bottom: 20px;
             color: #0d6efd;
         }
 
-        /*Style the carousel in CSS*/
+        /*CSS du caroussel*/
         .carousel-control.right,
         .carousel-control.left {
             background-image: none;
@@ -158,9 +153,7 @@
     </style>
 </head>
 
-
 <body id="myPage">
-    <!--Add a navbar at the top of the page that collapses on smaller screens:-->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -169,7 +162,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">Logo</a>
+                <a class="navbar-brand" href="#myPage">QuizLab</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -178,7 +171,7 @@
                     <li><a href="#Services">SERVICES</a></li>
                     <% if(utilisateurCo) {%>
                         <li><a href="/utilisateur">NOS QUESTIONNAIRES</a></li>
-                        <li><a href="">PROFIL</a></li>
+                        <li><a href="/profil">PROFIL</a></li>
                         <li><a href="/deconnexion">DÉCONNEXION</a></li>
                     <% } %>
                     <% if(!utilisateurCo) {%>
@@ -189,14 +182,11 @@
             </div>
         </div>
     </nav>
-    <!--Put HTML elements inside a .jumbotron-->
-    <section class="jumbotron text-center"> <!--Add the .text-center class to center the text inside-->
+    <section class="jumbotron text-center">
         <h1>QuizLab</h1>
         <p>Séries de tests pour les cégepiens</p>
     </section>
-    <!--Add a container (.container-fluid)-->
     <section id="À propos" class="container-fluid bg-grey">
-        <!--Separate the icon and the "about text" by creating two columns (.col-sm-8 and .col-sm-4)-->
         <div class="row">
             <div class="col-sm-8">
                 <h2>À propos de notre site</h2>
@@ -211,19 +201,17 @@
                 </p>
             </div>
             <div class="col-sm-4">
-                <!--Logo lit-->
                 <span class="glyphicon glyphicon-book logo"></span>
             </div>
         </div>
     </section>
-    <!--Add Matières container-->
     <section id="Matières" class="container-fluid">
         <div class="text-center">
             <h2>Matières</h2>
             <h4>QuizLab offre des examens portant sur les matières suivantes :</h4>
         </div>
         <div class="row">
-            <div class="col-sm-4"> <!--Create a full width container, with three columns of equal width (.col-sm-4)-->
+            <div class="col-sm-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <h2>Chimie</h2>
@@ -231,7 +219,6 @@
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#ch">
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <!--Mettre les images dans le panneau-->
                     <div id="ch" class="collapse">
                         <h3>Chimie I (générale)</h3>
                         <img src="/general.png">
@@ -250,7 +237,6 @@
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#meth">
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <!--Mettre les images dans le panneau-->
                     <div id="meth" class="collapse">
                         <h3>Calcul I (différentiel)</h3>
                         <img src="/derivee.png">
@@ -271,7 +257,6 @@
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#phy">
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <!--Mettre les images dans le panneau-->
                     <div id="phy" class="collapse">
                         <h3>Physique I (mécanique)</h3>
                         <img src="/mechanics.png">
@@ -284,17 +269,14 @@
             </div>
         </div>
     </section>
-    <!--Add a carousel-->
     <section id="Services" class="container-fluid bg-grey">
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <h2>Autres services</h2>
-            <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
-            <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <h4>Si vous avez des questions,<br><span style="font-style:normal;"></span></h4>
@@ -308,7 +290,6 @@
                     </h4>
                 </div>
             </div>
-            <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -319,13 +300,10 @@
             </a>
         </div>
     </section>
-    <!--Add an "Up Arrow" icon to the footer, which will take the user to the top of the page when clicked on-->
     <footer class="container-fluid text-center">
         <a href="#myPage" title="To Top">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a>
     </footer>
 </body>
-
-
 <html>

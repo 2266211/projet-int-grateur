@@ -1,3 +1,4 @@
+//Connexion avec la base de donnée MongoDB via Compass
 const mongoose = require("mongoose");
 const connect = mongoose.connect("mongodb+srv://Cluster:1234@cluster.rsbyhvp.mongodb.net/QUIZLAB");
 

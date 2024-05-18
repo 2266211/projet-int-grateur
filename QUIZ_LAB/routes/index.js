@@ -1,3 +1,4 @@
+//Toutes les dépendances nécessaires pour le projet
 const express = require('express');
 const path = require('path');
 const router = express.Router();
@@ -12,24 +13,23 @@ require('./config');
 const User = require('../models/user');
 const Quiz = require('../models/quiz');
 
-//Variable temporaire
+//Variable temporaire pour le score du test
 let questionRepondu = [false,false,false,false,false,false,false,false,false,false];
 let scoreTemp = [false,false,false,false,false,false,false,false,false,false];
 let finalScore = 0;
 
-//Variable temporelle
+//Variable temporaire en relation au temps moyen
 let tempsDebut = 0;
 let tempsPris = 0;
 
-//Varible du questionnaire le plus récent
+//Varible du titre du questionnaire le plus récent
 let testCourant = "";
 
-//Conversion des données en format json
+//Conversion des données en format json et déclaration du 
 router.use(express.json());
-
 router.use(express.static('public'));
 
-//Encodation de l'url
+//Encodation de l'url et utilisation des cookies dans le site web
 router.use(express.urlencoded({extended : false}));
 router.use(cookieParser());
 
@@ -56,6 +56,17 @@ router.get('/', async (req, res) => {
 
 });
 
+//Cheminement de la page de profil
+router.get('/profil', async (req, res) => {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userID;
+    const user = await User.findById(userId);
+
+    res.render('profil', {user : user});
+});
+
+//Cheminement de la page d'utilisateur classique (Mes questionnaires)
 router.get('/utilisateur', async (req,res) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -69,7 +80,7 @@ router.get('/utilisateur', async (req,res) => {
     }
 })
 
-//Cheminement utilisateur admin
+//Cheminement de la page d'administrateur (Mes questionnaires)
 router.get('/admin', async (req,res) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -79,6 +90,7 @@ router.get('/admin', async (req,res) => {
     res.render('admin', {user : user, quiz : null});
 })
 
+//Lorsqu'un administrateur choisit un questionnaire, on passe par cette méthode
 router.post("/acces-stats", async (req, res) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -99,16 +111,19 @@ router.post("/acces-stats", async (req, res) => {
     const tempsMoyen = ss.mean(quizCourant.temps);
     const pourR = (quizCourant.foisReussi/quizCourant.foisFait)*100;
 
+    console.log(moyenne.toFixed(2));
+
     if(req.body.indexQ == null){
-        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : null});
+        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne.toFixed(2), mediane : mediane.toFixed(2), ecartType : ecartType.toFixed(2), tempsMoyen : tempsMoyen.toFixed(2), pourR : pourR.toFixed(2), pourRQ : null});
     }else{
         const indexQ = req.body.indexQ;
         const pourRQ = (quizCourant.questions[indexQ].foisReussi)/(quizCourant.foisFait) * 100;
-        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : pourRQ, indexQ : indexQ});
+        res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne.toFixed(2), mediane : mediane.toFixed(2), ecartType : ecartType.toFixed(2), tempsMoyen : tempsMoyen.toFixed(2), pourR : pourR.toFixed(2), pourRQ : pourRQ.toFixed(2), indexQ : indexQ});
     }
     
 });
 
+//Lorsqu'un administrateur choisit une question, on passe par cette méthode
 router.post("/acces-stats-q", async (req, res) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -131,7 +146,7 @@ router.post("/acces-stats-q", async (req, res) => {
 
     const pourRQ = (quizCourant.questions[indexQ].foisReussi)/(quizCourant.foisFait) * 100;
 
-    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne, mediane : mediane, ecartType : ecartType, tempsMoyen : tempsMoyen, pourR : pourR, pourRQ : pourRQ});
+    res.render('admin', {user : user, quiz : quizCourant, moyenne : moyenne.toFixed(2), mediane : mediane.toFixed(2), ecartType : ecartType.toFixed(2), tempsMoyen : tempsMoyen.toFixed(2), pourR : pourR.toFixed(2), pourRQ : pourRQ.toFixed(2)});
 });
 
 
@@ -219,7 +234,7 @@ router.post("/connexion", async (req, res) => {
     }
 })
 
-//Accès au quiz différent dépendamment du button sélectionner dans la page web
+//Accès au quiz différent dépendamment du bouton sélectionné dans la page web
 router.post('/acces-quiz', (req,res)=>  {
     try{
         testCourant = req.body.nomQuiz;
@@ -230,7 +245,7 @@ router.post('/acces-quiz', (req,res)=>  {
     }
 })
 
-//Quiz + début du chrono pour le temps
+//Cheminement de la page du questionnaire choisi par l'utilisateur classique
 router.get('/quiz', async (req, res) => {
     try{
         const quiz = await Quiz.findOne({titre : testCourant});
@@ -251,6 +266,7 @@ router.get('/quiz', async (req, res) => {
     
 });
 
+//Lorsque l'utilisateur veut passé à une autre question, peu importe si on a répondu ou pas à la question
 router.post('/next', async(req, res) => {
     const currentQuestionIndex = req.body.currentQuestionIndex || 0;
     const nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
@@ -259,7 +275,9 @@ router.post('/next', async(req, res) => {
   });
 
 
-//Soumission des réponses + actualisation à la prochaine question + calcul de score temporaire
+//Soumission d'une réponse à la fois si l'on clique sur une des quatres options
+//Actualisation du tableau de score
+//Actualisation de la page pour afficher la prochaine question
 router.post('/submit-answer', async(req, res) => {
     const currentQuestionIndex = req.body.currentQuestionIndex || 0;
 
@@ -286,7 +304,9 @@ router.post('/submit-answer', async(req, res) => {
     res.redirect(`/quiz?currentQuestionIndex=${currentQuestionIndex}`);
   });
 
-  //Soumission finale du questionnaire + traitement du score + traitement du temps pris
+  //Soumission finale du questionnaire
+  //On calcul le score final
+  //On calcul aussi le temps pris pour faire le test
   router.post('/submit-quiz', async (req, res) => {
     try {
         const token = req.cookies.token;
