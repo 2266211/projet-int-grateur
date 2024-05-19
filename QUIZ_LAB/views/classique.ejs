@@ -207,15 +207,32 @@
                             <h3>Chimie I (générale)</h3>
                             <img src="/general.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie générale">Faire le test</button>
-                            <h4><%=user.scores[0]%>/10</h4>
+                            <% if(user.scores[0] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[0] != 0) {%>
+                                <h4>Résultat : <%=user.scores[0]%>/10</h4>
+                            <% } %>
                             <h3>Chimie II (des solutions)</h3>
                             <img src="/solutions.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie des solutions">Faire le test</button>
-                            <h4><%=user.scores[1]%>/10</h4>
+                            <% if(user.scores[1] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[1] != 0) {%>
+                                <h4>Résultat : <%=user.scores[1]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Chimie III (organique)</h3>
                             <img src="/organic.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Chimie organique">Faire le test</button>
-                            <h4><%=user.scores[2]%>/10</h4>
+                            <% if(user.scores[2] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[2] != 0) {%>
+                                <h4>Résultat : <%=user.scores[2]%>/10</h4>
+                            <% } %>
+                            
                         </div>
                     </div>
                 </div>
@@ -231,19 +248,43 @@
                             <h3>Calcul I (différentiel)</h3>
                             <img src="/derivee.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul différentiel">Faire le test</button>
-                            <h4><%=user.scores[3]%>/10</h4>
+                            <% if(user.scores[3] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[3] != 0) {%>
+                                <h4>Résultat : <%=user.scores[3]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Calcul II (intégral)</h3>
                             <img src="/huves.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Calcul intégral">Faire le test</button>
-                            <h4><%=user.scores[4]%>/10</h4>
+                            <% if(user.scores[4] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[4] != 0) {%>
+                                <h4>Résultat : <%=user.scores[4]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Mathématiques discrètes</h3>
                             <img src="/discrete.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mathématiques discrètes">Faire le test</button>
-                            <h4><%=user.scores[5]%>/10</h4>
+                            <% if(user.scores[5] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[5] != 0) {%>
+                                <h4>Résultat : <%=user.scores[5]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Algèbre linéaire et vectorielle</h3>
                             <img src="/linear.png" class="btn btn-primary d-inline-flex">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Algèbre linéaire et vectorielle">Faire le test</button>
-                            <h4><%=user.scores[6]%>/10</h4>
+                            <% if(user.scores[6] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[6] != 0) {%>
+                                <h4>Résultat : <%=user.scores[6]%>/10</h4>
+                            <% } %>
+                            
                         </div>
                     </div>
                 </div>
@@ -259,15 +300,32 @@
                             <h3>Physique I (mécanique)</h3>
                             <img src="/mechanics.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Mécanique">Faire le test</button>
-                            <h4><%=user.scores[7]%>/10</h4>
+                            <% if(user.scores[7] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[7] != 0) {%>
+                                <h4>Résultat : <%=user.scores[7]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Physique II (électrique et magnétique)</h3>
                             <img src="/elec.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Électricité et magnétisme">Faire le test</button>
-                            <h4><%=user.scores[8]%>/10</h4>
+                            <% if(user.scores[8] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[8] != 0) {%>
+                                <h4>Résultat : <%=user.scores[8]%>/10</h4>
+                            <% } %>
+                            
                             <h3>Physique III (ondulatoire et moderne)</h3>
                             <img src="/waves.png">
                             <button type="submit" class="btn btn-primary d-inline-flex" name="nomQuiz" value="Ondes et physique moderne">Faire le test</button>
-                            <h4><%=user.scores[9]%>/10</h4>
+                            <% if(user.scores[9] == 0) {%>
+                                <h4><strong></strong>L'utilisateur n'a pas encore réalisé ce test</strong></h4>
+                            <% } %>
+                            <% if(user.scores[9] != 0) {%>
+                                <h4>Résultat : <%=user.scores[9]%>/10</h4>
+                            <% } %>
                         </div>
                     </div>
                 </div>

@@ -162,7 +162,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">QuizLab</a>
+                <a class="navbar-brand">QuizLab</a>
+                <% if(!utilisateurCo) {%>
+                    <a style="color:#ffc107;position: absolute;left: 32%;top: 55%;transform: translate(-50%, -50%);" style="text-align: center;" >Non connecté</a>
+                <% } %>
+                <% if(utilisateurCo) {%>
+                    <a style="color:chartreuse;position: absolute;left: 32%;top: 55%;transform: translate(-50%, -50%);" >Connecté</a>
+                <% } %>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -179,7 +185,7 @@
                         <li><a href="/connexion">CONNEXION</a></li>
                     <% } %>
                 </ul>
-            </div>
+            </div>           
         </div>
     </nav>
     <section class="jumbotron text-center">

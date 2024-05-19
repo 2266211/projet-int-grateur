@@ -343,7 +343,7 @@ router.post('/submit-answer', async(req, res) => {
             quiz.temps.push(tempsPris);
         }
 
-        if(quiz.scores[0] && quiz.length == 0){
+        if(quiz.scores[0] == 0){
             quiz.scores[0] = scoreFinal;
         }else{
             quiz.scores.push(scoreFinal);
@@ -353,8 +353,8 @@ router.post('/submit-answer', async(req, res) => {
 
         finalScore = scoreFinal;
 
-        if (scoreFinal > (user.scores && user.scores.length > 0 ? user.scores[0] : 0)) {
-            user.scores[0] = scoreFinal;
+        if (scoreFinal > (user.scores && user.scores.length > 0 ? user.scores[quiz.indice] : 0)) {
+            user.scores[quiz.indice] = scoreFinal;
             await user.save();
             console.log('Score Utilisateur mise à jour.');
         } else {
