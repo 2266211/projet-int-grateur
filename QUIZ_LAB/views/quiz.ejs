@@ -13,10 +13,15 @@
         .navbar {
             background-color: #0d6efd;
             border: none;
-            color: #ffc107;
-            text-shadow: 2px 2px 4px #000;
+            color:white;
+            padding-right: 50px;
+            padding-left: 50px;
         }
-        
+        .navbar-brand,
+        .navbar-nav > li > a {
+            color: white !important;
+            
+        }
         .question-section {
             padding: 20px;
             border: 1px solid #ddd;
@@ -29,7 +34,6 @@
             margin-top: 10px;
             width: 100%;
         }
-      
     </style>
 </head>
 <body>
@@ -37,6 +41,11 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">QuizLab Test</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/quitter">Quitter le test</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -52,14 +61,15 @@
             <div class="col-sm-9">
                 <form action="/submit-answer" method="post">
                     <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
-                    <h2><%= quiz.questions[currentQuestionIndex].question %></h2>
+                    <h2><strong>Question <%=currentQuestionIndex+1%> : </strong></h2>
+                    <h2><%=quiz.questions[currentQuestionIndex].question %></h2>
                     <% for (let i = 0; i < quiz.questions[currentQuestionIndex].options.length; i++) { %>
                         <button class="btn btn-default answer-btn" type="submit" name="answer" value="<%= i %>"><%= quiz.questions[currentQuestionIndex].options[i] %></button>
                     <% } %>
                 </form>
                 <form action="/next" method="post"  class="form-inline" style="margin-top: 10px;">
                     <input type="hidden" name="currentQuestionIndex" value="<%= currentQuestionIndex %>">
-                    <% if (currentQuestionIndex < 9) { %>
+                    <% if (currentQuestionIndex < (quiz.questions.length - 1)) { %>
                       <button type="submit" onclick="updateFormAction('submit')" class="btn btn-primary btn-block">Suivant</button>
                     <% } %>
                 </form>

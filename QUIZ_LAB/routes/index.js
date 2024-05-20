@@ -204,7 +204,7 @@ router.post("/inscription", async (req, res) => {
         data.motdepasse = hashedPassword; 
 
         const userdata = await User.create(data);
-        res.render('/', {existingUser : false, nombreErreur : 50});
+        res.render('accueil', {utilisateurCo : false});
     }
 });
 
@@ -381,6 +381,17 @@ router.get('/quiz-result', async (req, res) => {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
+});
+
+router.get('/quitter', async (req, res) => {
+    for(let i = 0 ; i < scoreTemp.length; i++){
+        questionRepondu[i] = false;
+        scoreTemp[i] = false;
+    }
+    let tempsDebut = 0;
+    let tempsPris = 0;
+    
+    res.redirect('/');
 });
 
 module.exports = router;

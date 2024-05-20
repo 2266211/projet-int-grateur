@@ -313,7 +313,12 @@
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <h2>Titre du questionnaire</h2>
+                        <% if(quiz != null) { %>
+                            <h2><%=quiz.titre%></h2>
+                        <% } %>
+                        <% if(quiz == null) { %>
+                            <h2>Choisir un questionnaire</h2>
+                        <% } %>
                     </div>
                     <button class="btn btn-fleche collapsed" data-toggle="collapse" data-target="#questions">
                         <i class="bi bi-chevron-up"></i>
@@ -382,7 +387,7 @@
                                 <tr>
                                     <th>Moyenne</th>
                                     <% if (quiz != null) { %>
-                                        <td id="moyenne"><%=moyenne%></td>
+                                        <td id="moyenne"><%=moyenne%> / 10</td>
                                     <% } %>
                                     <% if (quiz == null) { %>
                                         <td id="moyenne">-</td>
@@ -391,7 +396,7 @@
                                 <tr>
                                     <th>Médiane</th>
                                     <% if (quiz != null) { %>
-                                        <td id="mediane"><%=mediane%></td>
+                                        <td id="mediane"><%=mediane%> / 10</td>
                                     <% } %>
                                     <% if (quiz == null) { %>
                                         <td id="mediane">-</td>
@@ -419,7 +424,7 @@
                                 <tr>
                                     <th>Temps moyen</th>
                                     <% if (quiz != null) { %>
-                                        <td id="tempsMoyen"><%=tempsMoyen%></td>
+                                        <td id="tempsMoyen"><%=tempsMoyen%> s</td>
                                     <% } %>
                                     <% if (quiz == null) { %>
                                         <td id="tempsMoyen">-</td>
