@@ -17,24 +17,24 @@
   - L'innovation
   - Public cible
 - Les acteurs
-  -Les utilisateurs classiques
-  -Les admins
+  - Les utilisateurs classiques
+  - Les admins
 - Les scénarios
-  -Premier scénario : Utilisateur classique
-  -Second scénario : Administrateur
+  - Premier scénario : Utilisateur classique
+  - Second scénario : Administrateur
 - Les technologies
-    - Technologies utilisées
-    - Défis et difficultés
+  - Technologies utilisées
+  - Défis et difficultés
 - Le plan de travail
-    - Planification des tâches
-    - Classes du projet
+  - Planification des tâches
+  - Classes du projet
 - Les diagrammes
-    - Diagramme de Gantt
-    - Diagramme de classes
-    - Diagramme de déploiement
+  - Diagramme de Gantt
+  - Diagramme de classes
+  - Diagramme de déploiement
 - Les preuves d'exécution du projet
-    - Une vidéo
-    - Des captures d'écran
+  - Une vidéo
+  - Des captures d'écran
 - Les perspectives
 - La conclusion
 
