@@ -154,4 +154,4 @@ En raison des contraintes de temps, QuizLab reste un site Web limité. Cela dit,
 
 
 ## Notes 
-Pour que le fichier QUIZ_LAB fonctionne, il faut télécharger npm_modules, ce fichier est automatiquement ajouter au projet lorsqu'on ajoute le gestionnaire npm.
+Pour que le fichier QUIZ_LAB fonctionne, il faut télécharger npm_modules, ce fichier est automatiquement ajouter au projet lorsqu'on ajoute le gestionnaire npm. Dans VsCode, ouvrir le fichier QuizLab et non le projet au complet pour exécuter le projet.
