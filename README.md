@@ -113,7 +113,7 @@ Il y a trois classes dans notre projet. En effet, comme on peut le voir dans not
 ## Les preuves d'exécution du projet
 
 ### Une vidéo
-(Mettre le lien de la vidéo ici.)
+https://bdebqcca-my.sharepoint.com/:v:/g/personal/2266211_bdeb_qc_ca/EQYz4lszTLRGoWQeATe_1y0Bq0Nh2c7GeJeOBDyZm_Z0mA
 
 ### Des captures d'écran
 Inscription pour un classique :
@@ -133,9 +133,6 @@ Explorer les statistiques (avant et après avoir choisi une question) :
 ![image](https://github.com/2266211/projet-int-grateur/assets/158298186/afce2cae-9c89-42ed-a720-49163b232985)
 ![image](https://github.com/2266211/projet-int-grateur/assets/158298186/1b053d6e-e2a6-43b2-a829-23cee96d9fec)
 
-**Lien de la vidéo de preuve d'exécution** (On trouve aussi cette vidéo dans le code source dans un fichier zip)
-
-https://bdebqcca-my.sharepoint.com/:v:/g/personal/2266211_bdeb_qc_ca/EQYz4lszTLRGoWQeATe_1y0Bq0Nh2c7GeJeOBDyZm_Z0mA
 
 ## Les perspectives
 Avec davantage de temps, QuizLab pourrait devenir un projet nettement plus gros sur divers aspects.
